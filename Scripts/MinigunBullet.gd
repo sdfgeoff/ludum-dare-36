@@ -1,7 +1,7 @@
 
 extends RigidBody2D
 
-const SPEED = 100.0
+const SPEED = 1000.0
 
 func _ready():
 	# Called every time the node is added to the scene.

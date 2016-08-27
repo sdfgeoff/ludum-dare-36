@@ -1,5 +1,5 @@
 
-const RELOAD_TIME = 0.5 # seconds
+const RELOAD_TIME = 0.2 # seconds
 
 var bullet = preload("res://Assets/Projectiles/MinigunBullet.tscn")
 var cool_down = 0

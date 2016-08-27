@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Assets/map_tiles.xml" type="TileSet" id=1]
 [ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Map/backdrop.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/minigun.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Map/minigun.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/minigun.gd" type="Script" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -83,6 +84,9 @@ texture = ExtResource( 3 )
 
 [node name="Minigun" type="Sprite" parent="."]
 
-script/script = ExtResource( 4 )
+transform/pos = Vector2( -403, -163.029 )
+transform/rot = 20.9176
+texture = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
 
