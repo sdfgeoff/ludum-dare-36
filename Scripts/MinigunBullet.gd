@@ -8,7 +8,9 @@ func _ready():
 	# Initialization here
 	set_max_contacts_reported(5)
 	set_contact_monitor(true)
-	set_linear_velocity(Vector2(SPEED,0.0))
+	var trans = get_global_transform()
+	var facing_vec = trans.x
+	set_linear_velocity(facing_vec * SPEED)
 
 
 
