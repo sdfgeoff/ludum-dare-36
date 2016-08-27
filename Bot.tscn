@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/bot.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[node name="BotNode" type="Node2D"]
+
+[node name="Bot" type="RigidBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 2.44375, 0, 0, 1.38967, 0.0193348, -0.0386453 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 16.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bot"]
+
+transform/pos = Vector2( 0.0193348, -0.0386453 )
+transform/scale = Vector2( 2.44375, 1.38967 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Bot"]
+
+texture = ExtResource( 2 )
+
+[node name="FootRaycast1" type="RayCast2D" parent="Bot"]
+
+transform/pos = Vector2( -20, 0 )
+enabled = true
+cast_to = Vector2( 0, 40 )
+layer_mask = 1
+type_mask = 15
+
+[node name="FootRaycast2" type="RayCast2D" parent="Bot"]
+
+transform/pos = Vector2( 20, 0 )
+enabled = true
+cast_to = Vector2( 0, 40 )
+layer_mask = 1
+type_mask = 15
+
+[node name="LeftRaycast" type="RayCast2D" parent="Bot"]
+
+transform/pos = Vector2( -20, -10 )
+enabled = true
+cast_to = Vector2( -30, 0 )
+layer_mask = 1
+type_mask = 15
+
+[node name="RightRaycast" type="RayCast2D" parent="Bot"]
+
+visibility/visible = false
+transform/pos = Vector2( 20, -10 )
+enabled = true
+cast_to = Vector2( 30, 0 )
+layer_mask = 1
+type_mask = 15
+
+

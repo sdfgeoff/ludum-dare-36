@@ -67,6 +67,22 @@ cast_to = Vector2( 0, 55 )
 layer_mask = 1
 type_mask = 15
 
+[node name="RightRaycast" type="RayCast2D" parent="Player"]
+
+transform/pos = Vector2( 20, -10 )
+enabled = true
+cast_to = Vector2( 15, 0 )
+layer_mask = 1
+type_mask = 15
+
+[node name="LeftRaycast" type="RayCast2D" parent="Player"]
+
+transform/pos = Vector2( -20, -10 )
+enabled = true
+cast_to = Vector2( -15, 0 )
+layer_mask = 1
+type_mask = 15
+
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 transform/pos = Vector2( -0.893055, 1.11979 )
