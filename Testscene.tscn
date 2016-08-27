@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Testmap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PlayerScene.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -15,7 +15,7 @@ extents = Vector2( 10, 10 )
 
 transform/pos = Vector2( 171.407, 93.8657 )
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 5.28708, 0, 0, 5.32769, -0.178175, -1.68056 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -44,7 +44,7 @@ texture = ExtResource( 1 )
 
 transform/pos = Vector2( -0.178175, -1.68056 )
 transform/scale = Vector2( 5.28708, 5.32769 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 

@@ -44,7 +44,6 @@ func _fixed_process(delta):
 
 
 
-
 func _ready():
 	set_fixed_process(true)
 	get_node("FootRaycast1").add_exception(self)

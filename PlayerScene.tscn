@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/camera.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -50,9 +51,25 @@ _update_shape_index = 0
 transform/pos = Vector2( 0, 1 )
 texture = ExtResource( 2 )
 
+[node name="FootRaycast1" type="RayCast2D" parent="Player"]
+
+transform/pos = Vector2( -20, 0 )
+enabled = true
+cast_to = Vector2( 0, 55 )
+layer_mask = 1
+type_mask = 15
+
+[node name="FootRaycast2" type="RayCast2D" parent="Player"]
+
+transform/pos = Vector2( 20, 0 )
+enabled = true
+cast_to = Vector2( 0, 55 )
+layer_mask = 1
+type_mask = 15
+
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-transform/pos = Vector2( -0.297901, 0.603798 )
+transform/pos = Vector2( -0.893055, 1.11979 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -69,21 +86,6 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
-
-[node name="FootRaycast1" type="RayCast2D" parent="Player"]
-
-transform/pos = Vector2( -20, 0 )
-enabled = true
-cast_to = Vector2( 0, 55 )
-layer_mask = 1
-type_mask = 15
-
-[node name="FootRaycast2" type="RayCast2D" parent="Player"]
-
-transform/pos = Vector2( 20, 0 )
-enabled = true
-cast_to = Vector2( 0, 55 )
-layer_mask = 1
-type_mask = 15
+script/script = ExtResource( 3 )
 
 
