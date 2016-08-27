@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Assets/map_tiles.xml" type="TileSet" id=1]
+[ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=2]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 
+transform/pos = Vector2( -126, 4 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 64, 64 )
@@ -21,5 +23,30 @@ collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( -327685, 0, -327684, 0, -327683, 0, -327682, 0, -327681, 0, -393216, 0, -393215, 0, -393214, 0, -393213, 0, -393212, 0, -393211, 0, -393210, 0, -393209, 0, -393208, 0, -393207, 0, -262149, 0, -327671, 0, -196613, 0, -262135, 0, -131077, 0, -196601, 2, -196600, 1, -196599, 0, -65541, 0, -131066, 2, -131065, 0, -131064, 0, -131063, 0, -5, 0, -65530, 0, -65529, 0, -65528, 0, -65527, 0, 65531, 0, 65532, 1, 6, 0, 7, 0, 8, 0, 9, 0, 131067, 0, 131068, 0, 131069, 1, 65541, 2, 65542, 0, 65543, 0, 65544, 0, 65545, 0, 196603, 0, 196604, 0, 196605, 0, 131076, 2, 131077, 0, 131078, 0, 131079, 0, 131080, 0, 131081, 0, 262139, 0, 262140, 0, 262141, 0, 262142, 0, 196610, 2, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 327675, 0, 327676, 0, 327677, 0, 327678, 0, 327679, 0, 262144, 0, 262145, 0, 262146, 0, 262147, 0, 262148, 0, 262149, 0, 262150, 0, 262151, 0, 262152, 0, 262153, 0 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+visibility/opacity = 0.269401
+transform/pos = Vector2( 302, 32 )
+z/z = -5
+config/amount = 32
+config/lifetime = 2.0
+config/texture = ExtResource( 2 )
+params/direction = 236.807
+params/spread = 10.0
+params/linear_velocity = 139.258
+params/spin_velocity = 56.7627
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 111.823
+params/tangential_accel = -84.9549
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.0
+params/hue_variation = 1.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
 
 
