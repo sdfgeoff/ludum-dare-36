@@ -1,6 +1,6 @@
 
 # change these to change the look.
-const MOUSE_LOOK_FACTOR = Vector2(0.3,0.5)
+const MOUSE_LOOK_FACTOR = Vector2(0.25,0.25)
 
 func _process(delta):
 	var port = get_viewport()
