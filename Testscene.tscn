@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Testmap.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -14,15 +15,11 @@ extents = Vector2( 34.0353, 33.4028 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="RectangleShape2D" id=3]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -47.3867, 78.8341 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -116,33 +113,6 @@ shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-editor/display_folded = true
-transform/pos = Vector2( -1.85059, 299.8 )
-input/pickable = false
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 24.9772, 0, 0, 1, 2.76483, 4.09595 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-
-transform/pos = Vector2( 2.76483, 4.09595 )
-transform/scale = Vector2( 24.9772, 1 )
-shape = SubResource( 3 )
-trigger = false
-_update_shape_index = 0
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D"]
-
-transform/pos = Vector2( 11.3689, 5.62442 )
-transform/scale = Vector2( 3.82217, 0.170047 )
-texture = ExtResource( 3 )
+[node name="Node2D" parent="." instance=ExtResource( 4 )]
 
 
