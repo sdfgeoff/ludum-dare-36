@@ -56,4 +56,6 @@ transform/scale = Vector2( 1.23238, 1.33691 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 4 )]
 
+transform/pos = Vector2( -570, -280 )
+
 

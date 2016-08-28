@@ -1,4 +1,6 @@
-[gd_scene format=1]
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Scripts/ParticleDie.gd" type="Script" id=1]
 
 [node name="Sparks" type="Particles2D"]
 
@@ -24,5 +26,6 @@ params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 color/color = Color( 0.884754, 0.890625, 0.702759, 1 )
+script/script = ExtResource( 1 )
 
 
