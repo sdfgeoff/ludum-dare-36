@@ -59,7 +59,9 @@ func _fixed_process(delta):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
 	
-	get_node("Minigun").set_rot( get_node("Camera2D").target_angle )
+	var minigun = get_node("Minigun")
+	minigun.set_rot( get_node("Camera2D").target_angle )
+	minigun.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
 	
 	set_rot(0.0)
 
@@ -72,6 +74,6 @@ func _ready():
 	get_node("LeftRaycast").add_exception(self)
 	get_node("RightRaycast").add_exception(self)
 	
-	add_to_group("ai_target")
+	get_node("/root/glob").setup_player(self)
 	
 	

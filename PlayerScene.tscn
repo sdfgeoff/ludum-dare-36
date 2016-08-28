@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/main_mech_0.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=3]
 [ext_resource path="res://Minigun.tscn" type="PackedScene" id=4]
 
@@ -18,7 +18,7 @@ height = 20.0
 transform/pos = Vector2( -47.3867, 79.8341 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 2.38653, 0, 0, 1.49344, 1.0627, 2.0818 )
+shapes/0/transform = Matrix32( 2.87064, 0, 0, 2.69231, -6.68306, 0.165894 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -41,8 +41,8 @@ script/script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
-transform/pos = Vector2( 1.0627, 2.0818 )
-transform/scale = Vector2( 2.38653, 1.49344 )
+transform/pos = Vector2( -6.68306, 0.165894 )
+transform/scale = Vector2( 2.87064, 2.69231 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
@@ -50,11 +50,12 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="Player"]
 
 transform/pos = Vector2( 0, 1 )
+transform/scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="FootRaycast1" type="RayCast2D" parent="Player"]
 
-transform/pos = Vector2( -20, 0 )
+transform/pos = Vector2( -30.6133, 12.1659 )
 enabled = true
 cast_to = Vector2( 0, 55 )
 layer_mask = 1
@@ -62,7 +63,7 @@ type_mask = 15
 
 [node name="FootRaycast2" type="RayCast2D" parent="Player"]
 
-transform/pos = Vector2( 20, 0 )
+transform/pos = Vector2( 19.3867, 12.1659 )
 enabled = true
 cast_to = Vector2( 0, 55 )
 layer_mask = 1
@@ -78,7 +79,7 @@ type_mask = 15
 
 [node name="LeftRaycast" type="RayCast2D" parent="Player"]
 
-transform/pos = Vector2( -20, -10 )
+transform/pos = Vector2( -30.6133, -7.8341 )
 enabled = true
 cast_to = Vector2( -15, 0 )
 layer_mask = 1
@@ -107,6 +108,6 @@ script/script = ExtResource( 3 )
 
 [node name="Minigun" parent="Player" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -1.8927, -1.25645 )
+transform/pos = Vector2( -1.30314, 11.4761 )
 
 

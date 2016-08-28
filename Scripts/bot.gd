@@ -2,7 +2,6 @@ extends RigidBody2D
 
 const WALK_SPEED = 150
 
-#const MAXIMUM_VERTICAL_SPEED_FOR_JUMP = 100;
 const JUMP_VERTICAL_IMPULSE = 600
 const JUMP_COOLDOWN = 0.2
 var jump_cooldown = 0.0
@@ -18,6 +17,9 @@ const DIR_CHANGE_TOLERANCE = 30
 var direction = DIR_RIGHT
 
 var hp = 100;
+var blood = preload("res://Assets/BloodSplat.tscn")
+
+
 
 func _fixed_process(delta):
 	
@@ -70,13 +72,20 @@ func _fixed_process(delta):
 func damage(dmg):
 	hp -= dmg
 	if (hp < 0):
+		spawn_blood()
 		queue_free()
 
+
+func spawn_blood():
+	var new_blood = blood.instance()
+	get_tree().get_root().add_child(new_blood)
+	new_blood.set_global_transform(get_global_transform())
 
 func _ready():
 	set_fixed_process(true)
 	
-	add_to_group("enemies")
+	get_node("/root/glob").setup_enemy(self)
+	
 	
 	get_node("FootRaycast1").add_exception(self)
 	get_node("FootRaycast2").add_exception(self)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Assets/Map/giblets.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/ParticleDie.gd" type="Script" id=2]
 
 [node name="BloodSplat" type="Particles2D"]
 
@@ -34,5 +35,6 @@ randomness/direction = 0.266814
 randomness/spread = 0.406504
 randomness/linear_velocity = 0.595713
 randomness/gravity_strength = 0.231338
+script/script = ExtResource( 2 )
 
 
