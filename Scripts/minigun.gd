@@ -32,7 +32,7 @@ func set_angle( alpha ):
 	
 	#var sprite = get_node("Sprite")
 	set_flip_h( backwards )
-	set_flip_v( backwards )
+	#set_flip_v( backwards )
 	
 	
 	

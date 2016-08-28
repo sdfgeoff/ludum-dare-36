@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Player/main_mech_0.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=3]
 [ext_resource path="res://Minigun.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Player/minigun_left_1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Player/minigun_left_0.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -109,14 +109,15 @@ script/script = ExtResource( 3 )
 
 [node name="Arm Right" parent="Player" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -12.3031, -18.5239 )
+transform/pos = Vector2( -12, -15 )
 z/z = 1
+offset = Vector2( 0, 0 )
 
 [node name="Arm Left" parent="Player" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 12.5125, -30.065 )
+transform/pos = Vector2( 10, -28 )
 z/z = -1
 texture = ExtResource( 5 )
-offset = Vector2( 0, 8 )
+offset = Vector2( 0, 0 )
 
 
