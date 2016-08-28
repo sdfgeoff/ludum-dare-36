@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Player/main_mech_0.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/PlayerAnimation.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=3]
 [ext_resource path="res://Minigun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Player/minigun_left_0.png" type="Texture" id=5]
@@ -48,11 +48,13 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Sprite" type="Sprite" parent="Player"]
+[node name="Sprite" type="AnimatedSprite" parent="Player"]
 
 transform/pos = Vector2( 0, 1 )
 transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
+animation = "default"
+flip_h = true
+script/script = ExtResource( 2 )
 
 [node name="FootRaycast1" type="RayCast2D" parent="Player"]
 
