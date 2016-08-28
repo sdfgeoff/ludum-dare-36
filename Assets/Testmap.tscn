@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Assets/map_tiles.xml" type="TileSet" id=1]
 [ext_resource path="res://Scripts/terrain.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Map/backdrop.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Map/minigun.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/minigun.gd" type="Script" id=6]
+[ext_resource path="res://Assets/BloodSplat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/EnemySpawner.gd" type="Script" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,11 +11,11 @@ transform/pos = Vector2( 112, -8 )
 
 [node name="Tiles" type="TileMap" parent="."]
 
-transform/pos = Vector2( -236, 4 )
+transform/pos = Vector2( -348.952, 4 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
+cell/quadrant_size = 32
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 cell/half_offset = 2
 cell/tile_origin = 0
@@ -28,33 +26,8 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( -327685, 0, -327684, 0, -327683, 0, -327682, 0, -327681, 0, -393216, 0, -393215, 0, -393214, 0, -393213, 0, -393212, 0, -393211, 0, -393210, 0, -393209, 0, -393208, 0, -393207, 0, -262149, 0, -327671, 0, -196613, 0, -262135, 0, -131077, 0, -196601, 2, -196600, 1, -196599, 0, -65541, 0, -131066, 2, -131065, 0, -131064, 0, -131063, 0, -5, 0, -65530, 0, -65529, 0, -65528, 0, -65527, 0, 65531, 0, 65532, 1, 6, 0, 7, 0, 8, 0, 9, 0, 131067, 0, 131068, 0, 131069, 1, 65541, 2, 65542, 0, 65543, 0, 65544, 0, 65545, 0, 196603, 0, 196604, 0, 196605, 0, 131076, 2, 131077, 0, 131078, 0, 131079, 0, 131080, 0, 131081, 0, 262139, 0, 262140, 0, 262141, 0, 262142, 0, 196610, 2, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 327675, 0, 327676, 0, 327677, 0, 327678, 0, 327679, 0, 262144, 0, 262145, 0, 262146, 0, 262147, 0, 262148, 0, 262149, 0, 262150, 0, 262151, 0, 262152, 0, 262153, 0 )
+tile_data = IntArray( -589829, 11, -589828, 11, -589827, 11, -589826, 11, -589825, 12, -655360, 10, -655359, 10, -655358, 10, -655357, 10, -655356, 10, -655355, 10, -655354, 10, -655353, 10, -655352, 10, -655351, 14, -655350, 11, -655349, 11, -655348, 11, -655347, 11, -655346, 11, -655345, 11, -655344, 11, -655343, 11, -655342, 11, -655341, 11, -524293, 11, -524292, 11, -524291, 11, -524290, 11, -524289, 0, -589815, 2, -589814, 14, -589813, 11, -589812, 11, -589811, 11, -589810, 11, -589809, 11, -589808, 11, -589807, 11, -589806, 11, -589805, 11, -458757, 11, -458756, 11, -458755, 11, -458754, 11, -458753, 0, -524278, 9, -524277, 11, -524276, 11, -524275, 11, -524274, 11, -524273, 11, -524272, 11, -524271, 11, -524270, 11, -524269, 11, -393221, 11, -393220, 11, -393219, 11, -393218, 11, -393217, 0, -458749, 7, -458748, 4, -458747, 8, -458742, 9, -458741, 11, -458740, 11, -458739, 11, -458738, 12, -458737, 10, -458736, 10, -458735, 10, -458734, 10, -458733, 14, -327685, 11, -327684, 11, -327683, 11, -327682, 11, -327681, 0, -393214, 7, -393213, 1, -393212, 10, -393211, 3, -393206, 9, -393205, 11, -393204, 11, -393203, 11, -393202, 0, -393197, 9, -262149, 11, -262148, 11, -262147, 11, -262146, 11, -262145, 0, -327679, 7, -327678, 1, -327677, 3, -327670, 2, -327669, 10, -327668, 10, -327667, 10, -327666, 3, -327661, 9, -196613, 11, -196612, 11, -196611, 11, -196610, 11, -196609, 13, -262144, 4, -262143, 1, -262142, 3, -262125, 9, -131077, 11, -131076, 11, -131075, 11, -131074, 11, -131073, 11, -196608, 6, -196607, 0, -196595, 7, -196594, 4, -196593, 4, -196592, 8, -196589, 9, -65541, 11, -65540, 11, -65539, 11, -65538, 11, -65537, 11, -131072, 6, -131071, 0, -131069, 7, -131068, 4, -131067, 4, -131066, 4, -131065, 8, -131064, 7, -131063, 8, -131061, 7, -131060, 4, -131059, 15, -131058, 6, -131057, 11, -131056, 0, -131053, 9, -5, 11, -4, 11, -3, 11, -2, 11, -1, 11, -65536, 6, -65535, 0, -65533, 9, -65532, 11, -65531, 12, -65530, 14, -65529, 13, -65528, 1, -65527, 3, -65526, 7, -65525, 15, -65524, 11, -65523, 11, -65522, 6, -65521, 11, -65520, 12, -65517, 9, 65531, 11, 65532, 11, 65533, 11, 65534, 11, 65535, 11, 0, 11, 1, 0, 3, 2, 4, 10, 5, 3, 6, 2, 7, 10, 8, 3, 9, 7, 10, 15, 11, 11, 12, 11, 13, 11, 14, 6, 15, 11, 16, 0, 19, 9, 131067, 11, 131068, 11, 131069, 11, 131070, 11, 131071, 11, 65536, 6, 65537, 0, 65544, 7, 65545, 15, 65546, 11, 65547, 11, 65548, 11, 65549, 11, 65550, 6, 65551, 11, 65552, 0, 65555, 9, 196603, 11, 196604, 11, 196605, 11, 196606, 11, 196607, 11, 131072, 11, 131073, 13, 131074, 4, 131075, 4, 131076, 4, 131077, 4, 131078, 4, 131079, 4, 131080, 15, 131081, 11, 131082, 11, 131083, 11, 131084, 11, 131085, 11, 131086, 6, 131087, 11, 131088, 13, 131089, 4, 131090, 4, 131091, 15 )
 script/script = ExtResource( 2 )
-
-[node name="Particles2D" type="Particles2D" parent="Tiles"]
-
-visibility/opacity = 0.269401
-transform/pos = Vector2( 416, 36 )
-z/z = -5
-config/amount = 32
-config/lifetime = 2.0
-config/texture = ExtResource( 3 )
-params/direction = 236.807
-params/spread = 10.0
-params/linear_velocity = 139.258
-params/spin_velocity = 56.7627
-params/orbit_velocity = 0.0
-params/gravity_direction = 0.0
-params/gravity_strength = 9.8
-params/radial_accel = 111.823
-params/tangential_accel = -84.9549
-params/damping = 0.0
-params/initial_angle = 0.0
-params/initial_size = 1.0
-params/final_size = 0.0
-params/hue_variation = 1.0
-params/anim_speed_scale = 1.0
-params/anim_initial_pos = 0.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -76,19 +49,15 @@ motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 0, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer 2"]
+[node name="BloodSplat 2" parent="." instance=ExtResource( 3 )]
 
-visibility/opacity = 0.2
-transform/pos = Vector2( 35, -30 )
-transform/scale = Vector2( 1.85547, 1.36719 )
-z/z = -100
-texture = ExtResource( 4 )
+transform/pos = Vector2( 57.4363, 40.7812 )
+transform/scale = Vector2( 1.23238, 1.33691 )
 
-[node name="Minigun" type="Sprite" parent="."]
+[node name="EnemySpawner" type="VisibilityNotifier2D" parent="."]
 
-transform/pos = Vector2( -403, -163.029 )
-transform/rot = 20.9176
-texture = ExtResource( 5 )
-script/script = ExtResource( 6 )
+transform/pos = Vector2( 588, -242 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = ExtResource( 4 )
 
 
