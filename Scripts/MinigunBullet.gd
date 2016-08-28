@@ -14,6 +14,8 @@ func _ready():
 	var trans = get_global_transform()
 	var facing_vec = trans.x
 	set_linear_velocity(facing_vec * SPEED)
+	
+	get_node("/root/glob").setup_player_projectile(self)
 
 
 

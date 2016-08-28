@@ -76,7 +76,8 @@ func damage(dmg):
 func _ready():
 	set_fixed_process(true)
 	
-	add_to_group("enemies")
+	get_node("/root/glob").setup_enemy(self)
+	
 	
 	get_node("FootRaycast1").add_exception(self)
 	get_node("FootRaycast2").add_exception(self)

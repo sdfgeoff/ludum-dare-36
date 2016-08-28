@@ -72,6 +72,6 @@ func _ready():
 	get_node("LeftRaycast").add_exception(self)
 	get_node("RightRaycast").add_exception(self)
 	
-	add_to_group("ai_target")
+	get_node("/root/glob").setup_player(self)
 	
 	
