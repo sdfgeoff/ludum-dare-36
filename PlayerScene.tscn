@@ -107,6 +107,6 @@ script/script = ExtResource( 3 )
 
 [node name="Minigun" parent="Player" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -1.8927, -1.25645 )
+transform/pos = Vector2( 1.36533, -93.2955 )
 
 

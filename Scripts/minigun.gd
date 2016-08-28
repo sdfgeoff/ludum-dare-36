@@ -14,7 +14,12 @@ func _fixed_process(delta):
 
 func fire_gun():
 	if cool_down > RELOAD_TIME:
-		add_child(bullet.instance())
+		
+		var proj = bullet.instance()
+		proj.set_rot(get_rot())
+		proj.set_global_pos(get_global_pos())
+		get_tree().get_root().add_child(proj)
+		
 		cool_down = 0
 
 func _ready():
