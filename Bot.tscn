@@ -51,7 +51,7 @@ texture = ExtResource( 2 )
 
 [node name="FootRaycast1" type="RayCast2D" parent="Bot"]
 
-transform/pos = Vector2( -18, 12 )
+transform/pos = Vector2( -14, 12 )
 enabled = true
 cast_to = Vector2( 0, 40 )
 layer_mask = 1
@@ -59,7 +59,7 @@ type_mask = 15
 
 [node name="FootRaycast2" type="RayCast2D" parent="Bot"]
 
-transform/pos = Vector2( 22, 12 )
+transform/pos = Vector2( 14, 12 )
 enabled = true
 cast_to = Vector2( 0, 40 )
 layer_mask = 1
@@ -75,7 +75,6 @@ type_mask = 15
 
 [node name="RightRaycast" type="RayCast2D" parent="Bot"]
 
-visibility/visible = false
 transform/pos = Vector2( 20, -10 )
 enabled = true
 cast_to = Vector2( 30, 0 )

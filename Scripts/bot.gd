@@ -31,6 +31,9 @@ func _fixed_process(delta):
 	direction = 0
 	
 	
+	var feet_touching = get_node("FootRaycast1").is_colliding() or get_node("FootRaycast2").is_colliding()
+	
+	
 	var targets = get_tree().get_nodes_in_group("ai_target")
 	if (targets.size() != 0):
 		var target = targets[0]
@@ -46,6 +49,9 @@ func _fixed_process(delta):
 		
 		if not jumping:
 			walk_speed = direction * WALK_SPEED
+			if feet_touching: set_rot(0.0)
+	
+	if direction: get_node("Sprite").set_flip_h( direction == DIR_LEFT )
 	
 		
 	else:
@@ -59,15 +65,11 @@ func _fixed_process(delta):
 	if (velocity.x < WALK_SPEED and velocity.x > -WALK_SPEED):
 		apply_impulse(Vector2(0,0), Vector2(walk_delta,0))
 	
-	var feet_touching = get_node("FootRaycast1").is_colliding() or get_node("FootRaycast2").is_colliding()
-	
 	if (jump_cooldown > 0.0): jump_cooldown -= delta
 	
 	if ( feet_touching and jumping):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
-	
-	set_rot(0.0)
 
 func damage(dmg):
 	hp -= dmg
@@ -84,12 +86,17 @@ func spawn_blood():
 func _ready():
 	set_fixed_process(true)
 	
-	get_node("/root/glob").setup_enemy(self)
+	var glob = get_node("/root/glob")
+	glob.setup_enemy(self)
 	
-	
-	get_node("FootRaycast1").add_exception(self)
-	get_node("FootRaycast2").add_exception(self)
-	get_node("LeftRaycast").add_exception(self)
-	get_node("RightRaycast").add_exception(self)
-	
-	
+	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
+	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
+	setup_ray("LeftRaycast", glob.terrain_layer | glob.enemy_layer)
+	setup_ray("RightRaycast", glob.terrain_layer | glob.enemy_layer)
+
+
+func setup_ray(name, mask):
+	var ray = get_node(name)
+	ray.set_layer_mask(mask)
+	ray.add_exception(self)
+
