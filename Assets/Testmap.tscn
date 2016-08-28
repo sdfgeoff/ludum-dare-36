@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/map_tiles.xml" type="TileSet" id=1]
 [ext_resource path="res://Scripts/terrain.gd" type="Script" id=2]
 [ext_resource path="res://Assets/BloodSplat.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Sparks.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/EnemySpawner.gd" type="Script" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -54,8 +54,10 @@ motion/mirroring = Vector2( 0, 0 )
 transform/pos = Vector2( 57.4363, 40.7812 )
 transform/scale = Vector2( 1.23238, 1.33691 )
 
-[node name="Particles2D" parent="." instance=ExtResource( 4 )]
+[node name="EnemySpawner" type="VisibilityNotifier2D" parent="."]
 
-transform/pos = Vector2( -570, -280 )
+transform/pos = Vector2( 198, -92 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = ExtResource( 4 )
 
 
