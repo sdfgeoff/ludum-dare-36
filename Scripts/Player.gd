@@ -12,12 +12,17 @@ const MASS = 1.0
 const DIR_LEFT = -1
 const DIR_RIGHT = 1
 
-var direction = 0;
+const RIGHT_ARM_POSITION = Vector2( -12, -15 )
+const RIGHT_ARM_POSITION_BACKWARDS = Vector2( 14, -15 )
+
+const LEFT_ARM_POSITION = Vector2( 10, -28 )
+const LEFT_ARM_POSITION_BACKWARDS = Vector2( -10, -28 )
+
+
+var direction = 0
+var backwards = false
 
 func _fixed_process(delta):
-	
-	#var space_rid = get_world_2d().get_space()
-	#var space_state = Physics2DServer.space_get_direct_state(space_rid)
 	
 	var walk_speed = 0
 	var walk_protection_ray = null;
@@ -27,13 +32,13 @@ func _fixed_process(delta):
 		direction = DIR_LEFT
 		walk_speed = -WALK_SPEED
 		walk_protection_ray = get_node("LeftRaycast")
-		
-			
+	
 	elif (Input.is_key_pressed(KEY_RIGHT) or Input.is_key_pressed(KEY_D)):
 		
 		direction = DIR_RIGHT
 		walk_speed = WALK_SPEED
 		walk_protection_ray = get_node("RightRaycast")
+	
 	
 	if (walk_protection_ray != null):
 		if (walk_protection_ray.is_colliding()):
@@ -60,7 +65,8 @@ func _fixed_process(delta):
 	
 
 	var target_angle = get_node("Camera2D").target_angle
-	get_node("Sprite").set_flip_h( target_angle < -(PI/2) or target_angle > (PI/2) )
+	backwards = target_angle < -(PI/2) or target_angle > (PI/2)
+	get_node("Sprite").set_flip_h( backwards )
 	
 	var minigun_right = get_node("Arm Right")
 	minigun_right.set_angle( target_angle )
@@ -69,7 +75,13 @@ func _fixed_process(delta):
 	var minigun_left = get_node("Arm Left")
 	minigun_left.set_angle( target_angle )
 	minigun_left.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
-
+	
+	if backwards:
+		minigun_right.set_pos( RIGHT_ARM_POSITION_BACKWARDS )
+		minigun_left.set_pos( LEFT_ARM_POSITION_BACKWARDS )
+	else:
+		minigun_right.set_pos( RIGHT_ARM_POSITION )
+		minigun_left.set_pos( LEFT_ARM_POSITION )
 	
 	set_rot(0.0)
 
