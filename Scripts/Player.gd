@@ -59,9 +59,13 @@ func _fixed_process(delta):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
 	
-	var minigun = get_node("Minigun")
-	minigun.set_rot( get_node("Camera2D").target_angle )
-	minigun.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	var minigun_right = get_node("Arm Right")
+	minigun_right.set_rot( get_node("Camera2D").target_angle )
+	minigun_right.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	
+	var minigun_left = get_node("Arm Left")
+	minigun_left.set_rot( get_node("Camera2D").target_angle )
+	minigun_left.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
 	
 	set_rot(0.0)
 

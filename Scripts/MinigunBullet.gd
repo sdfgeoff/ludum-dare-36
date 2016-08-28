@@ -13,7 +13,9 @@ func _ready():
 	set_contact_monitor(true)
 	var trans = get_global_transform()
 	var facing_vec = trans.x
-	set_linear_velocity(facing_vec * SPEED)
+	facing_vec.x += randf()*0.15 - 0.075
+	facing_vec.y += randf()*0.15 - 0.075
+	set_linear_velocity(facing_vec.normalized() * SPEED)
 	
 	get_node("/root/glob").setup_player_projectile(self)
 

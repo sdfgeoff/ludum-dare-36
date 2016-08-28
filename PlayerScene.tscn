@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/main_mech_0.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=3]
 [ext_resource path="res://Minigun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Player/minigun_left_1.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -106,8 +107,16 @@ drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 script/script = ExtResource( 3 )
 
-[node name="Minigun" parent="Player" instance=ExtResource( 4 )]
+[node name="Arm Right" parent="Player" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -1.30314, 11.4761 )
+transform/pos = Vector2( -12.3031, -18.5239 )
+z/z = 1
+
+[node name="Arm Left" parent="Player" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 12.5125, -30.065 )
+z/z = -1
+texture = ExtResource( 5 )
+offset = Vector2( 0, 8 )
 
 
