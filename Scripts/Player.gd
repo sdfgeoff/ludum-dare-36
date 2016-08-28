@@ -63,11 +63,11 @@ func _fixed_process(delta):
 	get_node("Sprite").set_flip_h( target_angle < -(PI/2) or target_angle > (PI/2) )
 	
 	var minigun_right = get_node("Arm Right")
-	minigun_right.set_rot( target_angle )
+	minigun_right.set_angle( target_angle )
 	minigun_right.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
 	
 	var minigun_left = get_node("Arm Left")
-	minigun_left.set_rot( target_angle )
+	minigun_left.set_angle( target_angle )
 	minigun_left.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
 
 	
