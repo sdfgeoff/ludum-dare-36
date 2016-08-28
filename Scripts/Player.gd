@@ -34,7 +34,6 @@ func _fixed_process(delta):
 		direction = DIR_RIGHT
 		walk_speed = WALK_SPEED
 		walk_protection_ray = get_node("RightRaycast")
-		
 	
 	if (walk_protection_ray != null):
 		if (walk_protection_ray.is_colliding()):
@@ -59,8 +58,12 @@ func _fixed_process(delta):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
 	
+	
+	var target_angle = get_node("Camera2D").target_angle
+	get_node("Sprite").set_flip_h( target_angle < -(PI/2) or target_angle > (PI/2) )
+	
 	var minigun = get_node("Minigun")
-	minigun.set_rot( get_node("Camera2D").target_angle )
+	minigun.set_rot( target_angle )
 	minigun.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
 	
 	set_rot(0.0)
@@ -69,11 +72,17 @@ func _fixed_process(delta):
 
 func _ready():
 	set_fixed_process(true)
-	get_node("FootRaycast1").add_exception(self)
-	get_node("FootRaycast2").add_exception(self)
-	get_node("LeftRaycast").add_exception(self)
-	get_node("RightRaycast").add_exception(self)
+	var glob = get_node("/root/glob")
+	glob.setup_player(self)
 	
-	get_node("/root/glob").setup_player(self)
-	
+	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer)
+	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer)
+	setup_ray("LeftRaycast", glob.terrain_layer | glob.enemy_layer)
+	setup_ray("RightRaycast", glob.terrain_layer | glob.enemy_layer)
+
+func setup_ray(name, mask):
+	var ray = get_node(name)
+	ray.set_layer_mask(mask)
+	ray.add_exception(self)
+
 	
