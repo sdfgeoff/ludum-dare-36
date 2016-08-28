@@ -21,12 +21,12 @@ func setup_enemy_projectile(obj):
 	pass
 
 func setup_player(obj):
-	#obj.set_collision_mask( 0 ) #terrain_layer | enemy_layer )
+	obj.set_collision_mask( terrain_layer | enemy_layer )
 	obj.set_layer_mask( player_layer )
 	obj.add_to_group("ai_target")
 
 func setup_enemy(obj):
-	#obj.set_collision_mask( terrain_layer | enemy_layer | player_layer | projectile_layer )
+	obj.set_collision_mask( terrain_layer | enemy_layer | player_layer )
 	obj.set_layer_mask( enemy_layer )
 	obj.add_to_group("enemies")
 
