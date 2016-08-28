@@ -4,13 +4,14 @@ const RELOAD_TIME = 0.1 # seconds
 var bullet = preload("res://Assets/Projectiles/MinigunBullet.tscn")
 var cool_down = 0
 
+var firing = false
 
 func _fixed_process(delta): 
 	cool_down += delta
 	
 	var port = get_viewport()
 	
-	fire_gun()
+	if firing: fire_gun()
 
 func fire_gun():
 	if cool_down > RELOAD_TIME:
