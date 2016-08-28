@@ -17,6 +17,8 @@ const DIR_CHANGE_TOLERANCE = 30
 
 var direction = DIR_RIGHT
 
+var hp = 100;
+
 func _fixed_process(delta):
 	
 	#var space_rid = get_world_2d().get_space()
@@ -65,10 +67,17 @@ func _fixed_process(delta):
 	
 	set_rot(0.0)
 
+func damage(dmg):
+	hp -= dmg
+	if (hp < 0):
+		queue_free()
 
 
 func _ready():
 	set_fixed_process(true)
+	
+	add_to_group("enemies")
+	
 	get_node("FootRaycast1").add_exception(self)
 	get_node("FootRaycast2").add_exception(self)
 	get_node("LeftRaycast").add_exception(self)

@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Assets/map_tiles.xml" type="TileSet" id=1]
 [ext_resource path="res://Scripts/terrain.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Player/stripes.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Map/backdrop.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Map/minigun.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/minigun.gd" type="Script" id=6]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,7 +11,7 @@ transform/pos = Vector2( 112, -8 )
 
 [node name="Tiles" type="TileMap" parent="."]
 
-transform/pos = Vector2( -236, 4 )
+transform/pos = Vector2( -348.952, 4 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 64, 64 )
@@ -79,16 +77,9 @@ motion/mirroring = Vector2( 0, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer 2"]
 
 visibility/opacity = 0.2
-transform/pos = Vector2( 35, -30 )
+transform/pos = Vector2( -77.9518, -34.911 )
 transform/scale = Vector2( 1.85547, 1.36719 )
 z/z = -100
 texture = ExtResource( 4 )
-
-[node name="Minigun" type="Sprite" parent="."]
-
-transform/pos = Vector2( -403, -163.029 )
-transform/rot = 20.9176
-texture = ExtResource( 5 )
-script/script = ExtResource( 6 )
 
 

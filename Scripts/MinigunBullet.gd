@@ -3,6 +3,8 @@ extends RigidBody2D
 
 const SPEED = 1000.0
 
+const DAMAGE = 10
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -15,4 +17,8 @@ func _ready():
 
 
 func _on_MinigunBullet_body_enter( body ):
+	
+	if (body in get_tree().get_nodes_in_group("enemies")):
+		body.damage(DAMAGE)
+	
 	queue_free()
