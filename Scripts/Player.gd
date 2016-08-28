@@ -20,26 +20,51 @@ const LEFT_ARM_POSITION_BACKWARDS = Vector2( -10, -28 )
 
 
 var direction = 0
+var direction_last = 0
 var backwards = false
+var backwards_last = true # this causes it to flip first frame is mouse in wrong side.
+var anim_current = 1
+
+
+func do_animation( ):
+	
+	var sprite = get_node("Sprite")
+	var frame = sprite.get_frame()
+	
+	if (backwards != backwards_last):
+		sprite.set_flip_h( backwards )
+	
+	if (direction == 0 and direction_last != 0):
+		sprite.stop()
+	elif (direction != direction_last):
+		if (direction == anim_current):
+			sprite.play()
+		elif (direction == 1):
+			sprite.play("Fwd")
+			sprite.set_frame( (frame+1)%6 )
+		elif (direction == -1):
+			sprite.play("Back")
+			sprite.set_frame( (frame-1)%6 )
+		anim_current = direction
 
 func _fixed_process(delta):
 	
 	var walk_speed = 0
 	var walk_protection_ray = null;
 	
-	if (Input.is_key_pressed(KEY_LEFT) or Input.is_key_pressed(KEY_A) ):
-		
+	# use keys to set motion
+	
+	if (Input.is_key_pressed(KEY_LEFT) or Input.is_key_pressed(KEY_A) ):	
 		direction = DIR_LEFT
 		walk_speed = -WALK_SPEED
 		walk_protection_ray = get_node("LeftRaycast")
 	
 	elif (Input.is_key_pressed(KEY_RIGHT) or Input.is_key_pressed(KEY_D)):
-		
 		direction = DIR_RIGHT
 		walk_speed = WALK_SPEED
 		walk_protection_ray = get_node("RightRaycast")
 	
-	
+	# dont walk if a wall contacts the wall ray
 	if (walk_protection_ray != null):
 		if (walk_protection_ray.is_colliding()):
 			var collider = walk_protection_ray.get_collider() 
@@ -49,25 +74,33 @@ func _fixed_process(delta):
 	
 	var velocity = get_linear_velocity()
 	var pos = get_pos()
+	var target_angle = get_node("Camera2D").target_angle
 	
-	var walk_delta = walk_speed - velocity.x;
-	if (velocity.x < WALK_SPEED and velocity.x > -WALK_SPEED):
-		apply_impulse(Vector2(0,0), Vector2(walk_delta,0))
 	
 	var feet_touching = get_node("FootRaycast1").is_colliding() or get_node("FootRaycast2").is_colliding()
 	
+	backwards = target_angle < -(PI/2) or target_angle > (PI/2)
 	
+	
+	# using an impusle to walk
+	var walk_delta = walk_speed - velocity.x;
+	if (velocity.x < WALK_SPEED and velocity.x > -WALK_SPEED):
+		apply_impulse(Vector2(0,0), Vector2(walk_delta,0))
+		
+		if (!feet_touching or walk_speed == 0):
+			direction = 0
+	else: direction = 0
+	
+	do_animation()
+	
+	# jumping
 	if (jump_cooldown > 0.0): jump_cooldown -= delta
-	
 	if ( feet_touching and Input.is_key_pressed(KEY_SPACE)):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
 	
-
-	var target_angle = get_node("Camera2D").target_angle
-	backwards = target_angle < -(PI/2) or target_angle > (PI/2)
-	get_node("Sprite").set_flip_h( backwards )
 	
+	# targeting and firing the miniguns
 	var minigun_right = get_node("Arm Right")
 	minigun_right.set_angle( target_angle )
 	minigun_right.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
@@ -76,14 +109,19 @@ func _fixed_process(delta):
 	minigun_left.set_angle( target_angle )
 	minigun_left.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
 	
-	if backwards:
-		minigun_right.set_pos( RIGHT_ARM_POSITION_BACKWARDS )
-		minigun_left.set_pos( LEFT_ARM_POSITION_BACKWARDS )
-	else:
-		minigun_right.set_pos( RIGHT_ARM_POSITION )
-		minigun_left.set_pos( LEFT_ARM_POSITION )
+	# fixing the position of the minigun
+	if backwards != backwards_last:
+		if backwards:
+			minigun_right.set_pos( RIGHT_ARM_POSITION_BACKWARDS )
+			minigun_left.set_pos( LEFT_ARM_POSITION_BACKWARDS )
+		else:
+			minigun_right.set_pos( RIGHT_ARM_POSITION )
+			minigun_left.set_pos( LEFT_ARM_POSITION )
 	
 	set_rot(0.0)
+	
+	backwards_last = backwards
+	direction_last = direction
 
 
 

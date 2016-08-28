@@ -3,4 +3,4 @@
 
 
 func _ready():
-	add_to_group("terrain")
+	get_node("/root/glob").setup_terrain(self)
