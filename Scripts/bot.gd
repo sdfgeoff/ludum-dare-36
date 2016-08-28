@@ -51,7 +51,7 @@ func _fixed_process(delta):
 			walk_speed = direction * WALK_SPEED
 			if feet_touching: set_rot(0.0)
 	
-	if direction: get_node("Sprite").set_flip_h( direction == DIR_LEFT )
+	if direction: get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
 	
 		
 	else:
