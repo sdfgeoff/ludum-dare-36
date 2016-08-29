@@ -14,6 +14,8 @@ const BACKSWING_DURATION = 0.7
 const SWING_DURATION = 0.15
 
 const DAMAGE = 5
+const SCORE = 2
+
 
 var state = MELEE_IDLE
 var swing_angle = 0

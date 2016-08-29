@@ -10,8 +10,8 @@ var pause_state = false
 onready var paused_popup = get_node("/root/Game/World/PlayerNode/Player/Camera2D/Paused Popup")
 
 
-var weapon_club = preload( "res://Enemies/Melee/club.tscn" )
-var weapon_axe = preload( "res://Enemies/Melee/axe.tscn" )
+var weapon_club = preload( "res://Enemies/Melee/Club.tscn" )
+var weapon_axe = preload( "res://Enemies/Melee/Axe.tscn" )
 
 
 func _ready():
