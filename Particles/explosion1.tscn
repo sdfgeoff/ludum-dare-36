@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Particles/explode.png" type="Texture" id=1]
 
-
-
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=1]
 
 shader/shading_mode = 0
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="ColorRamp" id=3]
+
+offsets = FloatArray( 0, 0.430155, 1 )
+colors = ColorArray( 1, 1, 1, 1, 0.855469, 0.481201, 0, 1, 0.765625, 0.316456, 0.119629, 1 )
+
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends Particles2D\n\nfunc _ready():\n\tpass"
 
@@ -16,7 +19,9 @@ script/source = "extends Particles2D\n\nfunc _ready():\n\tpass"
 
 [node name="Particles2D" type="Particles2D" parent="."]
 
-material/material = SubResource( 2 )
+visibility/blend_mode = 1
+material/material = SubResource( 1 )
+transform/scale = Vector2( 6, 6 )
 config/amount = 32
 config/lifetime = 0.829105
 config/preprocess = 0.1
@@ -42,6 +47,8 @@ params/anim_initial_pos = 0.0
 randomness/linear_velocity = 1.0
 randomness/initial_size = 0.550776
 randomness/final_size = 0.600358
-script/script = SubResource( 1 )
+color/color = Color( 0.613281, 0.38214, 0.158112, 1 )
+color/color_ramp = SubResource( 3 )
+script/script = SubResource( 2 )
 
 

@@ -4,7 +4,7 @@
 
 [node name="Sparks" type="Particles2D"]
 
-transform/pos = Vector2( 100, -40 )
+transform/pos = Vector2( -0.148819, -1.064 )
 z/z = -10
 config/amount = 16
 config/lifetime = 0.6
