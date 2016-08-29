@@ -8,6 +8,7 @@ var damage_particles = preload("res://Particles/PlayerDamage.tscn")
 
 const HEALTH_MAXIMUM = 1000
 const WALK_SPEED = 300
+const WALK_IMPULSE = 100
 
 #const MAXIMUM_VERTICAL_SPEED_FOR_JUMP = 100;
 const JUMP_VERTICAL_IMPULSE = 800
@@ -98,12 +99,11 @@ func _fixed_process(delta):
 	
 	# using an impusle to walk
 	var walk_delta = walk_speed - velocity.x;
-	if (velocity.x < WALK_SPEED and velocity.x > -WALK_SPEED):
-		apply_impulse(Vector2(0,0), Vector2(walk_delta,0))
-		
-		if (!feet_touching or walk_speed == 0):
-			direction = 0
-	else: direction = 0
+	if walk_delta > WALK_IMPULSE: walk_delta = WALK_IMPULSE
+	elif walk_delta < -WALK_IMPULSE: walk_delta = -WALK_IMPULSE
+	apply_impulse(Vector2(0,0), Vector2(walk_delta,0))
+	if (!feet_touching or walk_speed == 0):
+		direction = 0
 	
 	do_animation()
 	
