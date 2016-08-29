@@ -6,13 +6,25 @@ var enemy_layer = 8
 var player_layer = 4
 
 var pause_state = false
+var button_pause_state = false
 
-onready var paused_popup = get_node("/root/Game/World/PlayerNode/Player/Camera2D/Paused Popup")
+onready var pause_popup = get_node("/root/Game/HUD/Pause Popup")
+
+var score = 0
+var score_multiplier = 1
+var score_total = 0
+
+onready var hud_score = get_node("/root/Game/HUD/Score")
+
+
+var weapon_club = preload( "res://Enemies/Melee/club.tscn" )
+var weapon_axe = preload( "res://Enemies/Melee/axe.tscn" )
 
 
 func _ready():
 	set_pause_mode(2)
 	set_process(true)
+	update_score()
 
 func setup_player_projectile(obj):
 	obj.set_collision_mask( terrain_layer | enemy_layer )
@@ -44,11 +56,26 @@ func _process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_pressed("pause"):
-		pause_state = not(pause_state)
-		get_tree().set_pause(pause_state)
-		if pause_state:
-			paused_popup.show()
-		else:
-			paused_popup.hide()
+		if !button_pause_state:
+			button_pause_state = true
+			pause_state = not(pause_state)
+			get_tree().set_pause(pause_state)
+			if pause_state:
+				pause_popup.show()
+			else:
+				pause_popup.hide()
+	else:
+		button_pause_state = false
 
+func add_score(score_):
+	score += score_
+	update_score()
 
+func add_score_multiplier(delta_multiplier):
+	score_multiplier += delta_multiplier
+	update_score()
+	
+func update_score():
+	score_total = score * score_multiplier
+	hud_score.set_text("Score: %s" % score_total)
+	
