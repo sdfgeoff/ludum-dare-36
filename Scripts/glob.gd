@@ -19,6 +19,9 @@ onready var hud_score = get_node("/root/Game/HUD/Score")
 
 var weapon_club = preload( "res://Enemies/Melee/Club.tscn" )
 var weapon_axe = preload( "res://Enemies/Melee/Axe.tscn" )
+var weapon_sword = preload( "res://Enemies/Melee/Sword.tscn" )
+var weapon_samurai = preload( "res://Enemies/Melee/Samurai.tscn" )
+var weapon_lasersword = preload( "res://Enemies/Melee/LaserSword.tscn" )
 
 
 func _ready():

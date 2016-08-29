@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Particles/ParticleDie.gd" type="Script" id=1]
 
 [sub_resource type="ColorRamp" id=1]
 
@@ -10,7 +12,7 @@ colors = ColorArray( 0, 0.8125, 1, 1, 0.46875, 0.478848, 1, 0.0325204, 0.0078125
 config/amount = 6
 config/lifetime = 2.0
 config/preprocess = 0.1
-config/explosiveness = 0.0
+config/explosiveness = 0.1
 params/direction = 90.0
 params/spread = 180.0
 params/linear_velocity = 20.0
@@ -30,5 +32,6 @@ params/anim_initial_pos = 0.0
 randomness/linear_velocity = -0.451751
 randomness/spin_velocity = -0.000677943
 color/color_ramp = SubResource( 1 )
+script/script = ExtResource( 1 )
 
 

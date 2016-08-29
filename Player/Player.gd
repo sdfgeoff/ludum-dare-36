@@ -2,6 +2,8 @@ extends RigidBody2D
 
 onready var glob = get_node("/root/glob")
 
+var damage_particles = preload("res://Particles/PlayerDamage.tscn")
+
 const HEALTH_MAXIMUM = 1000
 const WALK_SPEED = 300
 
@@ -155,8 +157,15 @@ func setup_ray(name, mask):
 	ray.set_layer_mask(mask)
 	ray.add_exception(self)
 
-func damage(dmg):
+func damage(dmg, pos = null, angle = 0):
 	if (!dead):
+		
+		if pos != null:
+			var sparks = damage_particles.instance()
+			sparks.set_global_pos( pos )
+			sparks.set_rot(angle)
+			get_tree().get_root().add_child(sparks)
+		
 		hp -= dmg
 		health_bar.set_value(hp)
 		if (hp < 0):
