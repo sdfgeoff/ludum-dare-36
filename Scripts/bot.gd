@@ -53,7 +53,7 @@ func _fixed_process(delta):
 	
 	if direction: 
 		get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
-		get_node("Arm").set_flip_h( direction == DIR_RIGHT )
+		get_node("Weapon").get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
 		
 	else:
 		walk_speed = 0

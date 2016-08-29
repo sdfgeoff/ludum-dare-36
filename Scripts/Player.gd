@@ -34,15 +34,18 @@ func do_animation( ):
 	if (backwards != backwards_last):
 		sprite.set_flip_h( backwards )
 	
+	var facing = 1
+	if (backwards): facing = -1
+	
 	if (direction == 0 and direction_last != 0):
 		sprite.stop()
 	elif (direction != direction_last):
 		if (direction == anim_current):
 			sprite.play()
-		elif (direction == 1):
+		elif (direction == facing):
 			sprite.play("Fwd")
 			sprite.set_frame( (frame+1)%6 )
-		elif (direction == -1):
+		else:
 			sprite.play("Back")
 			sprite.set_frame( (frame-1)%6 )
 		anim_current = direction
