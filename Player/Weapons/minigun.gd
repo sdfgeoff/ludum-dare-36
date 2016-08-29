@@ -5,7 +5,7 @@ const bullet_offset = Vector2( 50, 10 )
 const bullet_offset_backwards = Vector2( 50, -10 )
 
 
-var bullet = preload("res://Assets/Projectiles/MinigunBullet.tscn")
+var bullet = preload("res://Player/Projectiles/MinigunBullet.tscn")
 var cool_down = 0
 
 var firing = false

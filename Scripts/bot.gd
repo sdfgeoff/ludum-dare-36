@@ -17,7 +17,7 @@ const DIR_CHANGE_TOLERANCE = 30
 var direction = DIR_RIGHT
 
 var hp = 100;
-var blood = preload("res://Assets/BloodSplat.tscn")
+var blood = preload("res://Particles/BloodSplat.tscn")
 
 
 

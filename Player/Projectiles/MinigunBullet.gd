@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var sparks = preload("res://Assets/Sparks.tscn")
+var sparks = preload("res://Particles/Sparks.tscn")
 
 
 const SPEED = 1000.0
