@@ -57,12 +57,12 @@ func _fixed_process(delta):
 	
 	# use keys to set motion
 	
-	if (Input.is_key_pressed(KEY_LEFT) or Input.is_key_pressed(KEY_A) ):	
+	if Input.is_action_pressed("move_left"):	
 		direction = DIR_LEFT
 		walk_speed = -WALK_SPEED
 		walk_protection_ray = get_node("LeftRaycast")
 	
-	elif (Input.is_key_pressed(KEY_RIGHT) or Input.is_key_pressed(KEY_D)):
+	elif Input.is_action_pressed("move_right"):
 		direction = DIR_RIGHT
 		walk_speed = WALK_SPEED
 		walk_protection_ray = get_node("RightRaycast")
@@ -98,7 +98,7 @@ func _fixed_process(delta):
 	
 	# jumping
 	if (jump_cooldown > 0.0): jump_cooldown -= delta
-	if ( feet_touching and Input.is_key_pressed(KEY_SPACE)):
+	if ( feet_touching and Input.is_action_pressed("jump")):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
 	
@@ -106,11 +106,11 @@ func _fixed_process(delta):
 	# targeting and firing the miniguns
 	var minigun_right = get_node("Arm Right")
 	minigun_right.set_angle( target_angle )
-	minigun_right.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	minigun_right.firing = Input.is_action_pressed("weapon_primary")
 	
 	var minigun_left = get_node("Arm Left")
 	minigun_left.set_angle( target_angle )
-	minigun_left.firing = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	minigun_left.firing = Input.is_action_pressed("weapon_primary")
 	
 	# fixing the position of the minigun
 	if backwards != backwards_last:
