@@ -10,10 +10,10 @@ const MELEE_SWING = 2
 
 const WEAPON_ANGLE_IDLE = PI
 const WEAPON_ANGLE_BACKSWING = PI/2
-const BACKSWING_DURATION = 0.4
+const BACKSWING_DURATION = 0.45
 const SWING_DURATION = 0.1
 
-const DAMAGE = 25
+const DAMAGE = 20
 const SCORE = 3
 
 
@@ -23,7 +23,6 @@ var swing_angle = 0
 var swing_damaging = false
 
 onready var sprite = get_node("Sprite")
-var sparks = preload("res://Particles/Sparks.tscn")
 
 func _fixed_process(delta):
 	
@@ -34,6 +33,7 @@ func _fixed_process(delta):
 		else:
 			swing_angle += WEAPON_ANGLE_BACKSWING*(delta / BACKSWING_DURATION)
 	if state == MELEE_SWING:
+		
 		if swing_damaging:
 			var hit_ray = get_node("HitRaycast")
 			if hit_ray.is_colliding():
@@ -48,12 +48,12 @@ func _fixed_process(delta):
 				
 				body.damage(DAMAGE, w_end, rot)
 		
+		
 		if swing_angle < 0:
 			state = MELEE_IDLE
 			swing_damaging = false
 		else:
 			swing_angle -= WEAPON_ANGLE_BACKSWING*(delta / SWING_DURATION)
-
 
 func set_angle( alpha ):
 	

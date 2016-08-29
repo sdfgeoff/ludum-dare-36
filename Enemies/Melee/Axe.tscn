@@ -3,7 +3,6 @@
 [ext_resource path="res://Enemies/Melee/Scripts/axe.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Arms/Axe_arm.png" type="Texture" id=2]
 
-
 [node name="Weapon" type="Node2D"]
 
 transform/pos = Vector2( 0, -20 )

@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://Enemies/Melee/Scripts/club.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Melee/Scripts/sword.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Arms/Sword_arm.png" type="Texture" id=2]
-[ext_resource path="res://Enemies/Melee/Scripts/sword.gd" type="Script" id=3]
-
 
 [node name="Weapon" type="Node2D"]
 
@@ -28,6 +26,5 @@ enabled = true
 cast_to = Vector2( -36, 6 )
 layer_mask = 1
 type_mask = 15
-script/script = ExtResource( 3 )
 
 

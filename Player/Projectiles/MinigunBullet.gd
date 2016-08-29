@@ -6,6 +6,7 @@ var sparks = preload("res://Particles/Sparks.tscn")
 const SPEED = 1000.0
 const DAMAGE = 10
 
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -18,7 +19,7 @@ func _ready():
 	set_linear_velocity(facing_vec.normalized() * SPEED)
 	
 	get_node("/root/glob").setup_player_projectile(self)
-
+	
 
 
 func _on_MinigunBullet_body_enter( body ):

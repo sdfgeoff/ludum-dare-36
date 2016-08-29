@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Player/Projectiles/MinigunBullet.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Projectiles/Scripts/FlamerBullet.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Projectiles/Sprites/flame.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -19,7 +19,7 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 0.4
+mass = 0.0102041
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -38,7 +38,7 @@ script/script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="Body"]
 
 transform/pos = Vector2( -0.482094, -0.207764 )
-transform/scale = Vector2( 4, 4 )
+transform/scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 hframes = 8
 

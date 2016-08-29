@@ -10,11 +10,11 @@ const MELEE_SWING = 2
 
 const WEAPON_ANGLE_IDLE = PI
 const WEAPON_ANGLE_BACKSWING = PI/2
-const BACKSWING_DURATION = 0.5
+const BACKSWING_DURATION = 0.4
 const SWING_DURATION = 0.1
 
 const DAMAGE = 50
-const SCORE = 20
+const SCORE = 30
 
 
 var state = MELEE_IDLE

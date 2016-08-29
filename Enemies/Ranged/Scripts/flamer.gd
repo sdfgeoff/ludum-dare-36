@@ -4,13 +4,13 @@
 var backwards = false;
 var last_backwards = false;
 
-const SCORE = 10
+const SCORE = 15
 
-const COOLDOWN = 0.2
+const COOLDOWN = 0.1
 
 var cooldown = 0
 
-var projectile = preload("res://Player/Projectiles/MinigunBullet.tscn")
+var projectile = preload("res://Enemies/Projectiles/FlamerBullet.tscn")
 var projectile_port = Vector2( -10, 10 )
 
 const WEAPON_ANGLE_IDLE = PI
@@ -59,7 +59,7 @@ func attack():
 		var bullet = projectile.instance()
 		
 		bullet.set_global_pos( get_global_pos() + projectile_port.rotated(get_rot()))
-		bullet.set_rot(get_rot())
+		bullet.set_rot(get_rot()+PI)
 		get_tree().get_root().add_child(bullet)
 		
 
