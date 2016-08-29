@@ -86,7 +86,7 @@ func _fixed_process(delta):
 		else: sprite.stop()
 	
 	if backwards != backwards_last:
-		sprite.set_flip_h( direction == DIR_RIGHT )
+		sprite.set_flip_h( !backwards )
 		#get_node("Weapon").get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
 	
 	
