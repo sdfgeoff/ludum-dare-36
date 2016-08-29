@@ -5,11 +5,14 @@ var projectile_layer = 16
 var enemy_layer = 8
 var player_layer = 4
 
+var pause_state = false
 
+onready var paused_popup = get_node("/root/Game/World/PlayerNode/Player/Camera2D/Paused Popup")
 
 
 func _ready():
-	pass
+	set_pause_mode(2)
+	set_process(true)
 
 func setup_player_projectile(obj):
 	obj.set_collision_mask( terrain_layer | enemy_layer )
@@ -35,6 +38,17 @@ func setup_terrain(obj):
 	#obj.set_collision_mask( enemy_layer | player_layer | projectile_layer )
 	#obj.set_layer_mask( terrain_layer )
 	obj.add_to_group("terrain")
+
+func _process(delta):
+	if Input.is_action_pressed("quit"):
+		get_tree().quit()
 	
+	if Input.is_action_pressed("pause"):
+		pause_state = not(pause_state)
+		get_tree().set_pause(pause_state)
+		if pause_state:
+			paused_popup.show()
+		else:
+			paused_popup.hide()
 
 

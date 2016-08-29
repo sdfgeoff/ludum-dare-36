@@ -52,6 +52,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( 0, 1 )
 transform/scale = Vector2( 4, 4 )
+z/z = -2
 animation = "default"
 flip_h = true
 script/script = ExtResource( 2 )
@@ -108,16 +109,53 @@ drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 script/script = ExtResource( 3 )
 
+[node name="Paused Popup" type="PopupDialog" parent="Player/Camera2D"]
+
+process/pause_mode = 2
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+rect/scale = Vector2( 4, 4 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 79.0
+margin/right = 52.0
+margin/bottom = 54.0
+popup/exclusive = false
+
+[node name="Label" type="Label" parent="Player/Camera2D/Paused Popup"]
+
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 25.0
+margin/top = 6.5
+margin/right = -26.0
+margin/bottom = -7.5
+text = "PAUSED"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="Arm Right" parent="Player" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( -12, -15 )
-z/z = 1
+z/z = -1
 offset = Vector2( 0, 0 )
 
 [node name="Arm Left" parent="Player" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 10, -28 )
-z/z = -1
+z/z = -3
 texture = ExtResource( 5 )
 offset = Vector2( 0, 0 )
 
