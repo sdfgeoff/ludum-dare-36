@@ -8,8 +8,7 @@ var player_layer = 4
 var toggle_state_pause = false
 var button_state_pause = false
 var toggle_state_fullscreen = false
-var button_state_fullscreen = false
-
+var toggle_time_fullscreen = int(0)
 
 onready var pause_popup = get_node("/root/Game/HUD/Pause Popup")
 
@@ -18,7 +17,11 @@ var score_multiplier = 1
 var score_total = 0
 
 onready var hud_score = get_node("/root/Game/HUD/Score")
+onready var hud_white_border = get_node("/root/Game/HUD/White Border")
+onready var white_overlay = get_node("/root/Game/White Overlay")
 
+var cooldown_time_rift = int()
+var toggle_time_rift = int()
 
 var weapon_club = preload( "res://Enemies/Melee/Club.tscn" )
 var weapon_axe = preload( "res://Enemies/Melee/Axe.tscn" )
@@ -32,6 +35,9 @@ func _ready():
 	set_pause_mode(2)
 	set_process(true)
 	update_score()
+	
+	hud_white_border.set_modulate(Color(1.0,1.0,1.0,0))
+	white_overlay.set_modulate(Color(1.0,1.0,1.0,0))
 
 func setup_player_projectile(obj):
 	obj.set_collision_mask( terrain_layer | enemy_layer )
@@ -75,12 +81,15 @@ func _process(delta):
 		button_state_pause = false
 		
 	if Input.is_action_pressed("toggle_fullscreen"):
-		if !button_state_fullscreen:
-			button_state_fullscreen = true
+		if (OS.get_ticks_msec() - toggle_time_fullscreen) > (2000):
+			toggle_time_fullscreen = OS.get_ticks_msec()
 			toggle_state_fullscreen = not(toggle_state_fullscreen)
 			OS.set_window_fullscreen(toggle_state_fullscreen)
-		else:
-			button_state_fullscreen = false
+	
+	var time_to_rift_shift = cooldown_time_rift - (OS.get_ticks_msec() - toggle_time_rift)
+	rift_shift(time_to_rift_shift)
+	
+
 
 
 func add_score(score_):
@@ -95,3 +104,19 @@ func update_score():
 	score_total = score * score_multiplier
 	hud_score.set_text("%s CARNAGE" % (score_total*100))
 	
+func rift_shift(time_rem):
+	if time_rem < 0:
+		toggle_time_rift = OS.get_ticks_msec()
+		cooldown_time_rift = round(10000.0*randf() + 10000.0)
+		white_overlay.set_modulate(Color(1.0,1.0,1.0,0))
+		hud_white_border.set_modulate(Color(1.0,1.0,1.0,0))
+	elif time_rem < 100:
+		var alpha = time_rem/100
+		white_overlay.set_modulate(Color(1.0,1.0,1.0,alpha))
+		hud_white_border.set_modulate(Color(1.0,1.0,1.0,alpha))
+	elif time_rem < 200:
+		var alpha = 1.0 - (time_rem-100)/100
+		white_overlay.set_modulate(Color(1.0,1.0,1.0,alpha))
+	elif time_rem < 2200:
+		var alpha = 1.0 - (time_rem-200)/2000.0
+		hud_white_border.set_modulate(Color(1.0,1.0,1.0,alpha))
