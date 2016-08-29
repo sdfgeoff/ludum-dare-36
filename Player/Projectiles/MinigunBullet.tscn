@@ -3,7 +3,6 @@
 [ext_resource path="res://Player/Projectiles/MinigunBullet.gd" type="Script" id=1]
 [ext_resource path="res://Player/Projectiles/minigun_bullet.png" type="Texture" id=2]
 
-
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -20,7 +19,7 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 1.0
+mass = 0.4
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0

@@ -25,6 +25,8 @@ var backwards_last = true
 var anim_walk = false
 var anim_walk_last = true
 
+var weapon = null
+
 func _fixed_process(delta):
 	
 	#var space_rid = get_world_2d().get_space()
@@ -82,6 +84,10 @@ func _fixed_process(delta):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
 		
+	
+	weapon.attack()
+	
+	
 	backwards_last = backwards
 	anim_walk_last = anim_walk
 
@@ -114,4 +120,7 @@ func setup_ray(name, mask):
 	ray.set_layer_mask(mask)
 	ray.add_exception(self)
 	get_node("Sprite").play("Walk Forwards")
+	
+	weapon = get_node("Weapon")
+
 
