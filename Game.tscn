@@ -136,6 +136,7 @@ margin/top = 199.059
 margin/right = -4696.59
 margin/bottom = -5.94098
 texture = ExtResource( 5 )
+modulate = Color( 1, 1, 1, 0.498039 )
 stretch_mode = 0
 
 [node name="PlayerNode" parent="World" instance=ExtResource( 6 )]
