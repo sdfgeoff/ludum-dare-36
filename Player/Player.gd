@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+
+const HEALTH_MAXIMUM = 1000
 const WALK_SPEED = 300
 
 #const MAXIMUM_VERTICAL_SPEED_FOR_JUMP = 100;
@@ -18,7 +20,11 @@ const RIGHT_ARM_POSITION_BACKWARDS = Vector2( 14, -15 )
 const LEFT_ARM_POSITION = Vector2( 10, -28 )
 const LEFT_ARM_POSITION_BACKWARDS = Vector2( -10, -28 )
 
+onready var score_meter = get_node("Score")
+onready var health_bar = get_node("Health Bar")
 
+var score = 0
+var hp = HEALTH_MAXIMUM
 var direction = 0
 var direction_last = 0
 var backwards = false
@@ -137,10 +143,23 @@ func _ready():
 	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer)
 	setup_ray("LeftRaycast", glob.terrain_layer | glob.enemy_layer)
 	setup_ray("RightRaycast", glob.terrain_layer | glob.enemy_layer)
+	
+	health_bar.set_max(HEALTH_MAXIMUM)
+	health_bar.set_value(hp)
+	score_meter.set_text("Score: %s" % score)
 
 func setup_ray(name, mask):
 	var ray = get_node(name)
 	ray.set_layer_mask(mask)
 	ray.add_exception(self)
 
-	
+func damage(dmg):
+	hp -= dmg
+	health_bar.set_value(hp)
+	if (hp < 0):
+		spawn_blood()
+		queue_free()
+		
+func add_score(score_):
+	score += score_
+	score_meter.set_text("Score: %s" % score)

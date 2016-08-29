@@ -6,6 +6,8 @@ var enemy_layer = 8
 var player_layer = 4
 
 
+
+
 func _ready():
 	pass
 
