@@ -21,14 +21,12 @@ func _fixed_process(delta):
 
 func set_angle( alpha ):
 	
-	
 	backwards = alpha < -(PI/2) or alpha > (PI/2)
 	
 	if backwards:
 		set_rot(alpha - PI)
 	else:
 		set_rot(alpha)
-	
 	
 	#var sprite = get_node("Sprite")
 	set_flip_h( backwards )
