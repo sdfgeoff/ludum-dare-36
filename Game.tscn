@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://HUD.gd" type="Script" id=2]
 [ext_resource path="res://Map/vignette.png" type="Texture" id=3]
 [ext_resource path="res://Map/FacilityMap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemies/Bot.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Map/white overlay.png" type="Texture" id=7]
+[ext_resource path="res://Map/Background.png" type="Texture" id=5]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Bot.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Map/white overlay.png" type="Texture" id=8]
 
 [node name="Game" type="Node"]
 
@@ -116,12 +117,35 @@ z/z = -10
 [node name="Terrain" parent="World" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( -3773.59, -529.941 )
+z/z = -5
 
-[node name="PlayerNode" parent="World" instance=ExtResource( 5 )]
+[node name="Construction Site" type="TextureFrame" parent="World/Terrain"]
 
-[node name="BotNode" parent="World" instance=ExtResource( 6 )]
+visibility/behind_parent = true
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+rect/scale = Vector2( 4.5, 4.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -4312.59
+margin/top = 199.059
+margin/right = -4696.59
+margin/bottom = -5.94098
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="PlayerNode" parent="World" instance=ExtResource( 6 )]
+
+z/z = 1
+
+[node name="BotNode" parent="World" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -919.365, -272.548 )
+z/z = 2
 
 [node name="White Overlay" type="TextureFrame" parent="."]
 
@@ -136,7 +160,7 @@ margin/left = -7473.0
 margin/top = -2625.0
 margin/right = -7217.0
 margin/bottom = -2481.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 stretch_mode = 0
 
 
