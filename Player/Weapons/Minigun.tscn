@@ -3,9 +3,6 @@
 [ext_resource path="res://Player/Weapons/minigun_right_0.png" type="Texture" id=1]
 [ext_resource path="res://Player/Weapons/minigun.gd" type="Script" id=2]
 
-
-
-
 [node name="Minigun" type="Sprite"]
 
 transform/pos = Vector2( -5.216, 2.06798 )

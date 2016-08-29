@@ -10,11 +10,11 @@ const MELEE_SWING = 2
 
 const WEAPON_ANGLE_IDLE = PI
 const WEAPON_ANGLE_BACKSWING = PI/2
-const BACKSWING_DURATION = 0.5
+const BACKSWING_DURATION = 0.4
 const SWING_DURATION = 0.1
 
 const DAMAGE = 50
-const SCORE = 20
+const SCORE = 30
 
 
 var state = MELEE_IDLE
@@ -55,7 +55,10 @@ func _fixed_process(delta):
 		else:
 			swing_angle -= WEAPON_ANGLE_BACKSWING*(delta / SWING_DURATION)
 
-func set_angle( alpha ):
+func aim( target_pos ):
+	
+	var delta_pos = target_pos - get_global_pos()
+	var alpha = atan2( -delta_pos.y, delta_pos.x )
 	
 	backwards = !(alpha < -(PI/2) or alpha > (PI/2))
 	

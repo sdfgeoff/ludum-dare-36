@@ -55,7 +55,10 @@ func _fixed_process(delta):
 			swing_angle -= WEAPON_ANGLE_BACKSWING*(delta / SWING_DURATION)
 
 
-func set_angle( alpha ):
+func aim( target_pos ):
+	
+	var delta_pos = target_pos - get_global_pos()
+	var alpha = atan2( -delta_pos.y, delta_pos.x )
 	
 	backwards = !(alpha < -(PI/2) or alpha > (PI/2))
 	

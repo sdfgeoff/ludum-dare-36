@@ -1,10 +1,14 @@
 extends RigidBody2D
 
-var sparks = preload("res://Particles/Sparks.tscn")
 
+const SPEED = 300.0
+const DAMAGE = 8
+const LIFE = 1.5
 
-const SPEED = 1000.0
-const DAMAGE = 10
+var FRAME_COUNT = 8
+
+var frame = 0
+var life = 0
 
 
 func _ready():
@@ -18,17 +22,29 @@ func _ready():
 	facing_vec.y += randf()*0.15 - 0.075
 	set_linear_velocity(facing_vec.normalized() * SPEED)
 	
-	get_node("/root/glob").setup_player_projectile(self)
+	get_node("/root/glob").setup_enemy_projectile(self)
+	set_process(true)
+
+
+func _process(delta):
 	
+	life += delta
+	if life > LIFE:
+		queue_free()
+		
+	else:
+		var new_frame = int((life/LIFE)*FRAME_COUNT)
+		if new_frame > frame:
+			get_node("Sprite").set_frame(new_frame)
+			frame = new_frame
+
+
 
 
 func _on_MinigunBullet_body_enter( body ):
 	
-	if (body in get_tree().get_nodes_in_group("enemies")):
+	if (body in get_tree().get_nodes_in_group("ai_target")):
 		body.damage(DAMAGE)
 	
-	var new_sparks = sparks.instance()
-	get_tree().get_root().add_child(new_sparks)
-	new_sparks.set_global_transform(get_global_transform())
 	queue_free()
 	

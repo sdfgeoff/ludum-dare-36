@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://Enemies/Melee/Scripts/axe.gd" type="Script" id=1]
-[ext_resource path="res://Enemies/Arms/Axe_arm.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Ranged/Scripts/plasma_rifle.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Arms/Plasmagun_Arm.png" type="Texture" id=2]
 
 [node name="Weapon" type="Node2D"]
 
@@ -10,20 +10,14 @@ script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
+transform/pos = Vector2( 0.315559, 0 )
 transform/scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="RangeRaycast" type="RayCast2D" parent="."]
 
 enabled = true
-cast_to = Vector2( -50, 0 )
-layer_mask = 1
-type_mask = 15
-
-[node name="HitRaycast" type="RayCast2D" parent="."]
-
-enabled = true
-cast_to = Vector2( -40, 22 )
+cast_to = Vector2( -800, 0 )
 layer_mask = 1
 type_mask = 15
 

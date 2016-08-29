@@ -22,9 +22,11 @@ const DIR_RIGHT = 1
 
 const RIGHT_ARM_POSITION = Vector2( -12, -15 )
 const RIGHT_ARM_POSITION_BACKWARDS = Vector2( 14, -15 )
+onready var minigun_right = get_node("Arm Right")
 
 const LEFT_ARM_POSITION = Vector2( 10, -28 )
 const LEFT_ARM_POSITION_BACKWARDS = Vector2( -10, -28 )
+onready var minigun_left = get_node("Arm Left")
 
 var hp = HEALTH_MAXIMUM
 var direction = 0
@@ -115,13 +117,8 @@ func _fixed_process(delta):
 	
 	
 	# targeting and firing the miniguns
-	var minigun_right = get_node("Arm Right")
-	minigun_right.set_angle( target_angle )
-	minigun_right.firing = Input.is_action_pressed("weapon_primary")
-	
-	var minigun_left = get_node("Arm Left")
-	minigun_left.set_angle( target_angle )
-	minigun_left.firing = Input.is_action_pressed("weapon_primary")
+	aim_miniguns(target_angle)
+	fire_miniguns(Input.is_action_pressed("weapon_primary"))
 	
 	# fixing the position of the minigun
 	if backwards != backwards_last:
@@ -169,7 +166,19 @@ func damage(dmg, pos = null, angle = 0):
 		hud.set_health(hp)
 		if (hp < 0):
 			dead = true
+			get_node("Sprite").stop()
 			hp = 0
+			fire_miniguns(false)
+
+
+func aim_miniguns(target_angle):
+	minigun_right.set_angle( target_angle )
+	minigun_left.set_angle( target_angle )
+
+func fire_miniguns(on=true):
+	minigun_right.firing = on
+	minigun_left.firing = on
+
 
 func add_score(score):
 	glob.add_score(score)

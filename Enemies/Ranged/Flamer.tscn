@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://Enemies/Melee/Scripts/axe.gd" type="Script" id=1]
-[ext_resource path="res://Enemies/Arms/Axe_arm.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Ranged/Scripts/flamer.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Arms/Flamethrower_arm.png" type="Texture" id=2]
 
 [node name="Weapon" type="Node2D"]
 
@@ -15,15 +15,9 @@ texture = ExtResource( 2 )
 
 [node name="RangeRaycast" type="RayCast2D" parent="."]
 
+transform/pos = Vector2( 0, 19.9946 )
 enabled = true
-cast_to = Vector2( -50, 0 )
-layer_mask = 1
-type_mask = 15
-
-[node name="HitRaycast" type="RayCast2D" parent="."]
-
-enabled = true
-cast_to = Vector2( -40, 22 )
+cast_to = Vector2( -200, 0 )
 layer_mask = 1
 type_mask = 15
 

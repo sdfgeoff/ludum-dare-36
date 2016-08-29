@@ -60,10 +60,11 @@ func _fixed_process(delta):
 			direction = DIR_LEFT
 			jumping = get_node("LeftRaycast").is_colliding()
 		
-		var target_angle = atan2( -delta_position.y, delta_position.x )
 		
-		weapon.set_angle(target_angle)
-		if weapon.in_range(): weapon.attack()
+		weapon.aim(target.get_global_pos())
+		if weapon.in_range():
+			weapon.attack()
+			direction = 0
 		
 		
 		if not jumping:
@@ -120,7 +121,7 @@ func _ready():
 	
 	glob.setup_enemy(self)
 	
-	set_weapon( glob.weapon_samurai.instance() )
+	set_weapon(glob.chose_weapon())
 	
 	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
 	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
