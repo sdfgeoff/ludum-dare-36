@@ -15,17 +15,18 @@ func _ready():
 	sprite.add_animation("Fwd")
 	for item in walk:
 	    sprite.add_frame("Fwd", item)
+	sprite.set_animation_speed("Fwd", 10)
 	
 	walk.invert()
 	
 	sprite.add_animation("Back")
 	for item in walk:
 		sprite.add_frame("Back", item)
+	sprite.set_animation_speed("Back", 10)
 	
 	sprite.add_animation("Stand")
 	sprite.add_frame("Stand", stand)
 	
-	sprite.set_animation_speed("Walk", 10)
 	set_sprite_frames(sprite)
 	play("Stand")
 
