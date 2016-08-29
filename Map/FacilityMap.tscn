@@ -77,7 +77,7 @@ script/script = ExtResource( 3 )
 
 [node name="ItemSpawner" type="VisibilityNotifier2D" parent="."]
 
-transform/pos = Vector2( 5604.49, 179.648 )
+transform/pos = Vector2( 5591.05, 192.236 )
 transform/scale = Vector2( 3.57115, 3.33282 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = ExtResource( 4 )
@@ -91,14 +91,14 @@ script/script = ExtResource( 4 )
 
 [node name="ItemSpawner2" type="VisibilityNotifier2D" parent="."]
 
-transform/pos = Vector2( -265.327, 301.586 )
+transform/pos = Vector2( 1458.95, 336.832 )
 transform/scale = Vector2( 3.57115, 3.33282 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = ExtResource( 4 )
 
 [node name="ItemSpawner3" type="VisibilityNotifier2D" parent="."]
 
-transform/pos = Vector2( 2051.48, 146.01 )
+transform/pos = Vector2( -148.239, 300.642 )
 transform/scale = Vector2( 3.57115, 3.33282 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = ExtResource( 4 )

@@ -30,6 +30,7 @@ func spawn_item():
 	else: item = rockets.instance()
 	get_tree().get_root().call_deferred("add_child",item)
 	item.set_global_transform(get_global_transform())
+	item.spawner = self
 
 func _ready():
 	add_to_group( "item_spawn" )
