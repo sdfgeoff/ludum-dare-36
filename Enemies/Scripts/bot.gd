@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+onready var glob = get_node("/root/glob")
+
 const WALK_SPEED = 150
 
 const JUMP_VERTICAL_IMPULSE = 600
@@ -104,6 +106,7 @@ func damage(dmg):
 	if (hp < 0):
 		spawn_blood()
 		queue_free()
+		glob.add_score(weapon.SCORE)
 
 
 func spawn_blood():

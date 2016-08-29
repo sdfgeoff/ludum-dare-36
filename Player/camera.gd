@@ -4,13 +4,8 @@ const MOUSE_LOOK_FACTOR = Vector2(0.25,0.25)
 
 var target_angle = 0.0
 
-onready var score_meter = get_node("../Score")
 onready var health_bar = get_node("../Health Bar")
-onready var score_meter_offset = score_meter.get_pos()
 onready var health_bar_offset = health_bar.get_pos()
-
-onready var paused_popup = get_node("Paused Popup")
-onready var paused_popup_offset = paused_popup.get_pos()
 
 func _process(delta):
 	var port = get_viewport()
@@ -22,12 +17,11 @@ func _process(delta):
 	
 	set_pos( screen_delta )
 	
+	
 
 
 func _fixed_process(delta):
-	score_meter.set_pos(score_meter_offset + get_pos())
 	health_bar.set_pos(health_bar_offset + get_pos())
-	paused_popup.set_pos(paused_popup_offset + get_pos())
 
 
 func _ready():
