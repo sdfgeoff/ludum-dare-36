@@ -10,7 +10,7 @@ transform/pos = Vector2( 112, -8 )
 
 [node name="Tiles" type="TileMap" parent="."]
 
-transform/pos = Vector2( -348.952, 4 )
+transform/pos = Vector2( -1953.59, 874.692 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 64, 64 )
