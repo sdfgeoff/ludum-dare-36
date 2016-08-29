@@ -25,6 +25,7 @@ var weapon_axe = preload( "res://Enemies/Melee/Axe.tscn" )
 var weapon_sword = preload( "res://Enemies/Melee/Sword.tscn" )
 var weapon_samurai = preload( "res://Enemies/Melee/Samurai.tscn" )
 var weapon_lasersword = preload( "res://Enemies/Melee/LaserSword.tscn" )
+var weapon_flamer = preload( "res://Enemies/Ranged/Flamer.tscn" )
 
 
 func _ready():
