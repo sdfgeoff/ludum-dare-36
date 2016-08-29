@@ -1,14 +1,8 @@
 extends RigidBody2D
 
 
-const SPEED = 300.0
-const DAMAGE = 8
-const LIFE = 1.5
-
-var FRAME_COUNT = 8
-
-var frame = 0
-var life = 0
+const SPEED = 400.0
+const DAMAGE = 4
 
 
 func _ready():
@@ -24,27 +18,19 @@ func _ready():
 	
 	get_node("/root/glob").setup_enemy_projectile(self)
 	set_process(true)
-
-
-func _process(delta):
 	
-	life += delta
-	if life > LIFE:
-		queue_free()
-		
-	else:
-		var new_frame = int((life/LIFE)*FRAME_COUNT)
-		if new_frame > frame:
-			get_node("Sprite").set_frame(new_frame)
-			frame = new_frame
-
+	set_angular_velocity(0.5)
 
 
 
 func _on_MinigunBullet_body_enter( body ):
 	
 	if (body in get_tree().get_nodes_in_group("ai_target")):
-		body.damage(DAMAGE)
+		
+		var vel = get_linear_velocity()
+		var angle = atan2(vel.x, vel.y)
+		
+		body.damage(DAMAGE, get_global_pos(), angle)
 	
 	queue_free()
 	

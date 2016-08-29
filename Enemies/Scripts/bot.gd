@@ -60,9 +60,8 @@ func _fixed_process(delta):
 			direction = DIR_LEFT
 			jumping = get_node("LeftRaycast").is_colliding()
 		
-		var target_angle = atan2( -delta_position.y, delta_position.x )
 		
-		weapon.set_angle(target_angle)
+		weapon.aim(target.get_global_pos())
 		if weapon.in_range(): weapon.attack()
 		
 		
