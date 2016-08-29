@@ -27,8 +27,14 @@ var weapon_club = preload( "res://Enemies/Melee/Club.tscn" )
 var weapon_axe = preload( "res://Enemies/Melee/Axe.tscn" )
 var weapon_sword = preload( "res://Enemies/Melee/Sword.tscn" )
 var weapon_samurai = preload( "res://Enemies/Melee/Samurai.tscn" )
-var weapon_lasersword = preload( "res://Enemies/Melee/LaserSword.tscn" )
 var weapon_flamer = preload( "res://Enemies/Ranged/Flamer.tscn" )
+var weapon_lasersword = preload( "res://Enemies/Melee/LaserSword.tscn" )
+
+var weapons_melee = [weapon_club,weapon_axe,weapon_sword,weapon_samurai,weapon_flamer,weapon_lasersword]
+
+const EPOCH_COUNT = 6
+var epoch = 0
+var active_weapons = [weapons_melee[epoch]]
 
 
 func _ready():
@@ -114,9 +120,26 @@ func rift_shift(time_rem):
 		var alpha = time_rem/100
 		white_overlay.set_modulate(Color(1.0,1.0,1.0,alpha))
 		hud_white_border.set_modulate(Color(1.0,1.0,1.0,alpha))
+		set_enemy_weapons()
 	elif time_rem < 200:
 		var alpha = 1.0 - (time_rem-100)/100
 		white_overlay.set_modulate(Color(1.0,1.0,1.0,alpha))
 	elif time_rem < 2200:
 		var alpha = 1.0 - (time_rem-200)/2000.0
 		hud_white_border.set_modulate(Color(1.0,1.0,1.0,alpha))
+		
+		
+func set_enemy_weapons():
+	epoch = randi() % EPOCH_COUNT
+	active_weapons = [weapons_melee[epoch]]
+	var bots = get_tree().get_nodes_in_group("enemies")
+	for bot in bots:
+		bot.set_weapon(chose_weapon())
+		
+func chose_weapon(is_ranged=null):
+	var i = 0
+	if is_ranged == null:
+		i = randi() % 1
+	elif is_ranged:
+		i = 1
+	return(active_weapons[i].instance())
