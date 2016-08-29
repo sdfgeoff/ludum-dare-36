@@ -109,43 +109,6 @@ drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 script/script = ExtResource( 3 )
 
-[node name="Paused Popup" type="PopupDialog" parent="Player/Camera2D"]
-
-process/pause_mode = 2
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-rect/scale = Vector2( 4, 4 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 120.0
-margin/top = 79.0
-margin/right = 52.0
-margin/bottom = 54.0
-popup/exclusive = false
-
-[node name="Label" type="Label" parent="Player/Camera2D/Paused Popup"]
-
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 25.0
-margin/top = 6.5
-margin/right = -26.0
-margin/bottom = -7.5
-text = "PAUSED"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="Arm Right" parent="Player" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( -12, -15 )
@@ -182,22 +145,5 @@ range/value = 1.0
 range/exp_edit = false
 range/rounded = false
 percent/visible = true
-
-[node name="Score" type="Label" parent="Player"]
-
-anchor/left = 1
-anchor/right = 1
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = -327.387
-margin/top = -283.834
-margin/right = -372.387
-margin/bottom = -269.834
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 

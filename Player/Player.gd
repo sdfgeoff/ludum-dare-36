@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+onready var glob = get_node("/root/glob")
 
 const HEALTH_MAXIMUM = 1000
 const WALK_SPEED = 300
@@ -20,10 +21,8 @@ const RIGHT_ARM_POSITION_BACKWARDS = Vector2( 14, -15 )
 const LEFT_ARM_POSITION = Vector2( 10, -28 )
 const LEFT_ARM_POSITION_BACKWARDS = Vector2( -10, -28 )
 
-onready var score_meter = get_node("Score")
 onready var health_bar = get_node("Health Bar")
 
-var score = 0
 var hp = HEALTH_MAXIMUM
 var direction = 0
 var direction_last = 0
@@ -150,7 +149,6 @@ func _ready():
 	
 	health_bar.set_max(HEALTH_MAXIMUM)
 	health_bar.set_value(hp)
-	score_meter.set_text("Score: %s" % score)
 
 func setup_ray(name, mask):
 	var ray = get_node(name)
@@ -164,7 +162,9 @@ func damage(dmg):
 		if (hp < 0):
 			dead = true
 			hp = 0
-			
-func add_score(score_):
-	score += score_
-	score_meter.set_text("Score: %s" % score)
+
+func add_score(score):
+	glob.add_score(score)
+
+func add_score_multiplier(delta_multiplier):
+	glob.add_score_multiplier(delta_multiplier)
