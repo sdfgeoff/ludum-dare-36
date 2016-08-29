@@ -14,6 +14,7 @@ const DIR_RIGHT = 1
 
 const DIR_CHANGE_TOLERANCE = 30
 
+
 var direction = DIR_RIGHT
 
 var hp = 100;
@@ -25,7 +26,7 @@ var backwards_last = true
 var anim_walk = false
 var anim_walk_last = true
 
-onready var weapon = get_node("Weapon")
+var weapon = null
 
 var ranged_preference = 1.0
 
@@ -116,6 +117,8 @@ func _ready():
 	
 	var glob = get_node("/root/glob")
 	glob.setup_enemy(self)
+	
+	set_weapon( glob.weapon_club.instance() )
 	
 	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
 	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
