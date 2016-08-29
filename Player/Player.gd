@@ -1,6 +1,8 @@
 extends RigidBody2D
 
 onready var glob = get_node("/root/glob")
+onready var hud = get_node("/root/Game/HUD")
+
 
 const HEALTH_MAXIMUM = 1000
 const WALK_SPEED = 300
@@ -20,8 +22,6 @@ const RIGHT_ARM_POSITION_BACKWARDS = Vector2( 14, -15 )
 
 const LEFT_ARM_POSITION = Vector2( 10, -28 )
 const LEFT_ARM_POSITION_BACKWARDS = Vector2( -10, -28 )
-
-onready var health_bar = get_node("Health Bar")
 
 var hp = HEALTH_MAXIMUM
 var direction = 0
@@ -139,7 +139,6 @@ func _fixed_process(delta):
 
 func _ready():
 	set_fixed_process(true)
-	var glob = get_node("/root/glob")
 	glob.setup_player(self)
 	
 	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer)
@@ -147,8 +146,8 @@ func _ready():
 	setup_ray("LeftRaycast", glob.terrain_layer | glob.enemy_layer)
 	setup_ray("RightRaycast", glob.terrain_layer | glob.enemy_layer)
 	
-	health_bar.set_max(HEALTH_MAXIMUM)
-	health_bar.set_value(hp)
+	hud.set_health_max(HEALTH_MAXIMUM)
+
 
 func setup_ray(name, mask):
 	var ray = get_node(name)
@@ -158,7 +157,7 @@ func setup_ray(name, mask):
 func damage(dmg):
 	if (!dead):
 		hp -= dmg
-		health_bar.set_value(hp)
+		hud.set_health(hp)
 		if (hp < 0):
 			dead = true
 			hp = 0
