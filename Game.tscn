@@ -48,6 +48,7 @@ max_lines_visible = -1
 
 [node name="Pause Popup" type="PopupDialog" parent="HUD"]
 
+visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3

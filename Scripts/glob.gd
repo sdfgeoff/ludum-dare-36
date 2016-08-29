@@ -17,6 +17,10 @@ var score_total = 0
 onready var hud_score = get_node("/root/Game/HUD/Score")
 
 
+var weapon_club = preload( "res://Enemies/Melee/club.tscn" )
+var weapon_axe = preload( "res://Enemies/Melee/axe.tscn" )
+
+
 func _ready():
 	set_pause_mode(2)
 	set_process(true)

@@ -1,6 +1,6 @@
 extends Particles2D
 
-const THRESHOLD = 0.2
+const THRESHOLD = 0.3
 
 var age = 0
 
@@ -11,4 +11,6 @@ func _fixed_process(delta):
 
 func _ready():
 	set_fixed_process(true)
+	
+	set_z( -1 )
 	
