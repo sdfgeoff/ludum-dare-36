@@ -25,7 +25,7 @@ var backwards_last = true
 var anim_walk = false
 var anim_walk_last = true
 
-var weapon = null
+onready var weapon = get_node("Weapon")
 
 func _fixed_process(delta):
 	
@@ -44,15 +44,22 @@ func _fixed_process(delta):
 	if (targets.size() != 0):
 		var target = targets[0]
 		
-		var delta_position = target.get_global_pos().x - get_global_pos().x
-		if delta_position > DIR_CHANGE_TOLERANCE:
+		
+		var delta_position = target.get_global_pos() - get_global_pos()
+		if delta_position.x > DIR_CHANGE_TOLERANCE:
 			backwards = false
 			direction = DIR_RIGHT
 			jumping = get_node("RightRaycast").is_colliding()
-		elif delta_position < -DIR_CHANGE_TOLERANCE:
+		elif delta_position.x < -DIR_CHANGE_TOLERANCE:
 			backwards = true
 			direction = DIR_LEFT
 			jumping = get_node("LeftRaycast").is_colliding()
+		
+		var target_angle = atan2( -delta_position.y, delta_position.x )
+		
+		weapon.set_angle(target_angle)
+		weapon.attack()
+		
 		
 		if not jumping:
 			walk_speed = direction * WALK_SPEED
@@ -75,7 +82,7 @@ func _fixed_process(delta):
 	
 	if backwards != backwards_last:
 		sprite.set_flip_h( direction == DIR_RIGHT )
-		get_node("Weapon").get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
+		#get_node("Weapon").get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
 	
 	
 	if (jump_cooldown > 0.0): jump_cooldown -= delta
@@ -84,8 +91,6 @@ func _fixed_process(delta):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
 		
-	
-	weapon.attack()
 	
 	
 	backwards_last = backwards
@@ -120,7 +125,5 @@ func setup_ray(name, mask):
 	ray.set_layer_mask(mask)
 	ray.add_exception(self)
 	get_node("Sprite").play("Walk Forwards")
-	
-	weapon = get_node("Weapon")
 
 
