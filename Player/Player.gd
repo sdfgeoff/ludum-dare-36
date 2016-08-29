@@ -32,6 +32,8 @@ var backwards_last = true # this causes it to flip first frame is mouse in wrong
 var anim_current = 1
 
 
+var dead = false
+
 func do_animation( ):
 	
 	var sprite = get_node("Sprite")
@@ -57,6 +59,8 @@ func do_animation( ):
 		anim_current = direction
 
 func _fixed_process(delta):
+	
+	if (dead): return
 	
 	var walk_speed = 0
 	var walk_protection_ray = null;
@@ -154,12 +158,13 @@ func setup_ray(name, mask):
 	ray.add_exception(self)
 
 func damage(dmg):
-	hp -= dmg
-	health_bar.set_value(hp)
-	if (hp < 0):
-		spawn_blood()
-		queue_free()
-		
+	if (!dead):
+		hp -= dmg
+		health_bar.set_value(hp)
+		if (hp < 0):
+			dead = true
+			hp = 0
+			
 func add_score(score_):
 	score += score_
 	score_meter.set_text("Score: %s" % score)

@@ -27,6 +27,8 @@ var anim_walk_last = true
 
 onready var weapon = get_node("Weapon")
 
+var ranged_preference = 1.0
+
 func _fixed_process(delta):
 	
 	#var space_rid = get_world_2d().get_space()
@@ -58,7 +60,7 @@ func _fixed_process(delta):
 		var target_angle = atan2( -delta_position.y, delta_position.x )
 		
 		weapon.set_angle(target_angle)
-		weapon.attack()
+		if weapon.in_range(): weapon.attack()
 		
 		
 		if not jumping:
@@ -108,6 +110,7 @@ func spawn_blood():
 	get_tree().get_root().add_child(new_blood)
 	new_blood.set_global_transform(get_global_transform())
 
+
 func _ready():
 	set_fixed_process(true)
 	
@@ -118,12 +121,19 @@ func _ready():
 	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
 	setup_ray("LeftRaycast", glob.terrain_layer | glob.enemy_layer)
 	setup_ray("RightRaycast", glob.terrain_layer | glob.enemy_layer)
+	get_node("Sprite").play("Walk Forwards")
+
+
+func set_weapon(item):
+	if weapon != null: weapon.queue_free()
+	weapon = item
+	add_child(weapon)
 
 
 func setup_ray(name, mask):
 	var ray = get_node(name)
 	ray.set_layer_mask(mask)
 	ray.add_exception(self)
-	get_node("Sprite").play("Walk Forwards")
+	
 
 
