@@ -32,6 +32,9 @@ var weapon_lasersword = preload( "res://Enemies/Melee/LaserSword.tscn" )
 
 var weapons_melee = [weapon_club,weapon_axe,weapon_sword,weapon_samurai,weapon_flamer,weapon_lasersword]
 
+var weapon_rockthrowers = preload( "res://Enemies/Ranged/RockThrower.tscn" )
+
+
 const EPOCH_COUNT = 6
 var epoch = 0
 var active_weapons = [weapons_melee[epoch]]

@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-const SPEED = 400.0
+const SPEED = 600.0
 const DAMAGE = 4
 
 
@@ -28,7 +28,7 @@ func _on_MinigunBullet_body_enter( body ):
 	if (body in get_tree().get_nodes_in_group("ai_target")):
 		
 		var vel = get_linear_velocity()
-		var angle = atan2(vel.x, vel.y)
+		var angle = atan2(vel.x, vel.y) + PI
 		
 		body.damage(DAMAGE, get_global_pos(), angle)
 	
