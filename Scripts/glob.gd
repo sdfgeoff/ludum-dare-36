@@ -35,6 +35,7 @@ var weapons_melee = [weapon_club,weapon_axe,weapon_sword,weapon_samurai,weapon_f
 const EPOCH_COUNT = 6
 var epoch = 0
 var active_weapons = [weapons_melee[epoch]]
+var weapons_set = false
 
 
 func _ready():
@@ -116,11 +117,14 @@ func rift_shift(time_rem):
 		cooldown_time_rift = round(10000.0*randf() + 10000.0)
 		white_overlay.set_modulate(Color(1.0,1.0,1.0,0))
 		hud_white_border.set_modulate(Color(1.0,1.0,1.0,0))
+		weapons_set = false
 	elif time_rem < 100:
 		var alpha = time_rem/100
 		white_overlay.set_modulate(Color(1.0,1.0,1.0,alpha))
 		hud_white_border.set_modulate(Color(1.0,1.0,1.0,alpha))
-		set_enemy_weapons()
+		if not(weapons_set):
+			set_enemy_weapons()
+			weapons_set = true
 	elif time_rem < 200:
 		var alpha = 1.0 - (time_rem-100)/100
 		white_overlay.set_modulate(Color(1.0,1.0,1.0,alpha))
@@ -130,7 +134,12 @@ func rift_shift(time_rem):
 		
 		
 func set_enemy_weapons():
-	epoch = randi() % EPOCH_COUNT
+	var epoch_ = randi() % EPOCH_COUNT
+	if epoch_ == epoch:
+		epoch = (epoch_+1) % EPOCH_COUNT
+	else:
+		epoch = epoch_
+	
 	active_weapons = [weapons_melee[epoch]]
 	var bots = get_tree().get_nodes_in_group("enemies")
 	for bot in bots:
