@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Map/Background/coffee.png" type="Texture" id=1]
+
+[node name="Sprite" type="Sprite"]
+
+transform/pos = Vector2( 1.90262, -64.9269 )
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+
+
