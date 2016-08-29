@@ -10,6 +10,9 @@ onready var health_bar_offset = health_bar.get_pos()
 onready var pause_popup = get_node("Pause Popup")
 onready var pause_popup_offset = pause_popup.get_pos()
 
+onready var white_border = get_node("White Border")
+onready var white_border_offset = white_border.get_pos()
+
 onready var camera = get_node("/root/Game/World/PlayerNode/Player/Camera2D")
 
 func _ready():
@@ -20,6 +23,7 @@ func _fixed_process(delta):
 	score.set_pos(score_offset + center)
 	health_bar.set_pos(health_bar_offset + center)
 	pause_popup.set_pos(pause_popup_offset + center)
+	white_border.set_pos(white_border_offset + center)
 
 func set_health_max(hp):
 	health_bar.set_max(hp)
