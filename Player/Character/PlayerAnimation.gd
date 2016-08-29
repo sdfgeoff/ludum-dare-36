@@ -2,14 +2,14 @@ extends AnimatedSprite
 
 var sprite = SpriteFrames.new()
 
-var walk = [preload("res://Assets/Player/main_mech_0.png"),
-	preload("res://Assets/Player/main_mech_1.png"), 
-	preload("res://Assets/Player/main_mech_2.png"), 
-	preload("res://Assets/Player/main_mech_0.png"),
-	preload("res://Assets/Player/main_mech_3.png"),
-	preload("res://Assets/Player/main_mech_4.png")]
+var walk = [preload("res://Player/Character/main_mech_0.png"),
+	preload("res://Player/Character/main_mech_1.png"), 
+	preload("res://Player/Character/main_mech_2.png"), 
+	preload("res://Player/Character/main_mech_0.png"),
+	preload("res://Player/Character/main_mech_3.png"),
+	preload("res://Player/Character/main_mech_4.png")]
 
-var stand = preload("res://Assets/Player/main_mech_0.png")
+var stand = preload("res://Player/Character/main_mech_0.png")
 
 func _ready():
 	sprite.add_animation("Fwd")

@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Scripts/MinigunBullet.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Projectiles/minigun_bullet.png" type="Texture" id=2]
+[ext_resource path="res://Player/Projectiles/MinigunBullet.gd" type="Script" id=1]
+[ext_resource path="res://Player/Projectiles/minigun_bullet.png" type="Texture" id=2]
+
 
 [sub_resource type="CircleShape2D" id=1]
 
