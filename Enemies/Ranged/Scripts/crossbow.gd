@@ -8,15 +8,15 @@ const SCORE = 2
 
 const COOLDOWN = 3.5
 
-const angle_per_dist = 0.5 / 500
+const angle_per_dist = 0.35 / 500
 
 var cooldown = 0
 
-var projectile = preload("res://Enemies/Projectiles/Rock.tscn")
-var projectile_port = Vector2( -10, -20 )
+var projectile = preload("res://Enemies/Projectiles/Bolt.tscn")
+var projectile_port = Vector2( -10, 10 )
 
 const WEAPON_ANGLE_IDLE = PI
-const WEAPON_SPRITE_ANGLE = 0
+const WEAPON_SPRITE_ANGLE = -PI/4
 
 onready var sprite = get_node("Sprite")
 
@@ -42,8 +42,8 @@ func aim( target_pos ):
 	
 	if (backwards != last_backwards):
 		sprite.set_flip_h( backwards )
-		if backwards: sprite.set_rot(PI + WEAPON_SPRITE_ANGLE)
-		else: sprite.set_rot(-WEAPON_SPRITE_ANGLE)
+		if backwards: sprite.set_rot(PI - WEAPON_SPRITE_ANGLE)
+		else: sprite.set_rot(WEAPON_SPRITE_ANGLE)
 		
 		var new_cast = get_node("RangeRaycast").get_cast_to()
 		new_cast.y *= -1

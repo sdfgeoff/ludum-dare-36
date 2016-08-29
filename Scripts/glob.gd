@@ -32,8 +32,12 @@ var weapon_lasersword = preload( "res://Enemies/Melee/LaserSword.tscn" )
 
 var weapons_melee = [weapon_club,weapon_axe,weapon_sword,weapon_samurai,weapon_flamer,weapon_lasersword]
 
-var weapon_rockthrowers = preload( "res://Enemies/Ranged/RockThrower.tscn" )
-
+var weapon_rock= preload( "res://Enemies/Ranged/RockThrower.tscn" )
+var weapon_spear = preload( "res://Enemies/Ranged/SpearThrower.tscn" )
+var weapon_crossbow = preload( "res://Enemies/Ranged/Crossbow.tscn" )
+var weapon_shuriken = preload( "res://Enemies/Ranged/ShurikenThrower.tscn" )
+var weapon_rifle = preload( "res://Enemies/Ranged/Rifle.tscn" )
+var weapon_plasma = preload( "res://Enemies/Ranged/PlasmaRifle.tscn" )
 
 const EPOCH_COUNT = 6
 var epoch = 0

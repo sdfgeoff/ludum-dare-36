@@ -4,16 +4,14 @@
 var backwards = false;
 var last_backwards = false;
 
-const SCORE = 2
+const SCORE = 20
 
-const COOLDOWN = 3.5
-
-const angle_per_dist = 0.5 / 500
+const COOLDOWN = 1
 
 var cooldown = 0
 
-var projectile = preload("res://Enemies/Projectiles/Rock.tscn")
-var projectile_port = Vector2( -10, -20 )
+var projectile = preload("res://Enemies/Projectiles/Plasma.tscn")
+var projectile_port = Vector2( -10, 20 )
 
 const WEAPON_ANGLE_IDLE = PI
 const WEAPON_SPRITE_ANGLE = 0
@@ -32,18 +30,14 @@ func aim( target_pos ):
 	var alpha = atan2( -delta_pos.y, delta_pos.x )
 	
 	backwards = !(alpha < -(PI/2) or alpha > (PI/2))
-	
-	if backwards:
-		alpha += delta_pos.length() * angle_per_dist
-	else:
-		alpha -= delta_pos.length() * angle_per_dist
+
 	
 	set_rot(alpha + WEAPON_ANGLE_IDLE)
 	
 	if (backwards != last_backwards):
 		sprite.set_flip_h( backwards )
-		if backwards: sprite.set_rot(PI + WEAPON_SPRITE_ANGLE)
-		else: sprite.set_rot(-WEAPON_SPRITE_ANGLE)
+		if backwards: sprite.set_rot(PI - WEAPON_SPRITE_ANGLE)
+		else: sprite.set_rot(WEAPON_SPRITE_ANGLE)
 		
 		var new_cast = get_node("RangeRaycast").get_cast_to()
 		new_cast.y *= -1

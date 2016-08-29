@@ -4,15 +4,15 @@
 var backwards = false;
 var last_backwards = false;
 
-const SCORE = 2
+const SCORE = 6
 
-const COOLDOWN = 3.5
+const COOLDOWN = 4
 
-const angle_per_dist = 0.5 / 500
+const angle_per_dist = 0.5 / 600
 
 var cooldown = 0
 
-var projectile = preload("res://Enemies/Projectiles/Rock.tscn")
+var projectile = preload("res://Enemies/Projectiles/Spear.tscn")
 var projectile_port = Vector2( -10, -20 )
 
 const WEAPON_ANGLE_IDLE = PI
