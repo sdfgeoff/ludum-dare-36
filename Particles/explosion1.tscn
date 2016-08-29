@@ -21,6 +21,7 @@ script/source = "extends Particles2D\n\nfunc _ready():\n\tpass"
 
 visibility/blend_mode = 1
 material/material = SubResource( 1 )
+transform/scale = Vector2( 6, 6 )
 config/amount = 32
 config/lifetime = 0.829105
 config/preprocess = 0.1
