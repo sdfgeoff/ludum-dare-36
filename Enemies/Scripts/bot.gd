@@ -62,7 +62,9 @@ func _fixed_process(delta):
 		
 		
 		weapon.aim(target.get_global_pos())
-		if weapon.in_range(): weapon.attack()
+		if weapon.in_range():
+			weapon.attack()
+			direction = 0
 		
 		
 		if not jumping:
