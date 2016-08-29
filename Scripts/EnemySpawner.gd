@@ -1,6 +1,6 @@
 extends VisibilityNotifier2D
 
-const SPAWN_PROB = 0.01
+const SPAWN_PROB = 0.001
 
 var enemy = preload("res://Enemies/Bot.tscn")
 

@@ -118,10 +118,9 @@ func spawn_blood():
 func _ready():
 	set_fixed_process(true)
 	
-	var glob = get_node("/root/glob")
 	glob.setup_enemy(self)
 	
-	set_weapon( glob.weapon_club.instance() )
+	set_weapon( glob.weapon_samurai.instance() )
 	
 	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
 	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
