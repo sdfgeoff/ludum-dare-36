@@ -31,7 +31,7 @@ var direction = 0
 var direction_last = 0
 var backwards = false
 var backwards_last = true # this causes it to flip first frame is mouse in wrong side.
-var anim_current = 1
+var anim_current = -100
 
 
 var dead = false

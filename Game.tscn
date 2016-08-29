@@ -11,7 +11,6 @@
 [node name="HUD" parent="." instance=ExtResource( 1 )]
 
 process/pause_mode = 2
-visibility/visible = false
 margin/left = -510.0
 margin/top = -300.0
 margin/right = 514.0
@@ -46,9 +45,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 589.0
+margin/left = 553.0
 margin/top = 329.0
-margin/right = 438.0
+margin/right = 402.0
 margin/bottom = 289.0
 popup/exclusive = false
 
@@ -96,10 +95,6 @@ z/z = -10
 
 [node name="PlayerNode" parent="World" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -143.5, -7.55267 )
-
 [node name="BotNode" parent="World" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 297.304, -915.946 )
 
 
