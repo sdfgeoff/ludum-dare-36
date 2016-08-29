@@ -93,8 +93,12 @@ z/z = -10
 
 [node name="Terrain" parent="World" instance=ExtResource( 3 )]
 
+transform/pos = Vector2( -3773.59, -529.941 )
+
 [node name="PlayerNode" parent="World" instance=ExtResource( 4 )]
 
 [node name="BotNode" parent="World" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -919.365, -272.548 )
 
 
