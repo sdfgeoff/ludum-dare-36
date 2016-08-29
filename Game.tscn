@@ -92,6 +92,7 @@ percent/visible = true
 [node name="White Border" type="TextureFrame" parent="HUD"]
 
 process/pause_mode = 1
+visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -125,6 +126,7 @@ transform/pos = Vector2( -919.365, -272.548 )
 [node name="White Overlay" type="TextureFrame" parent="."]
 
 process/pause_mode = 1
+visibility/visible = false
 rect/scale = Vector2( 50, 30 )
 focus/ignore_mouse = true
 focus/stop_mouse = true

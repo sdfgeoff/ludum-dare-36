@@ -44,7 +44,9 @@ func _ready():
 	update_score()
 	
 	hud_white_border.set_modulate(Color(1.0,1.0,1.0,0))
+	hud_white_border.show()
 	white_overlay.set_modulate(Color(1.0,1.0,1.0,0))
+	white_overlay.show()
 
 func setup_player_projectile(obj):
 	obj.set_collision_mask( terrain_layer | enemy_layer )
