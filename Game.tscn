@@ -16,10 +16,6 @@
 
 [node name="BotNode" parent="World" instance=ExtResource( 3 )]
 
-[node name="BotNode" parent="." instance=ExtResource( 2 )]
-
-[node name="FacilityNode" parent="." instance=ExtResource( 3 )]
-
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 process/pause_mode = 2
