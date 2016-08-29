@@ -4,14 +4,16 @@
 var backwards = false;
 var last_backwards = false;
 
-const SCORE = 15
+const SCORE = 2
 
-const COOLDOWN = 0.1
+const COOLDOWN = 2.5
+
+const angle_per_dist = 0.5 / 500
 
 var cooldown = 0
 
-var projectile = preload("res://Enemies/Projectiles/FlamerBullet.tscn")
-var projectile_port = Vector2( -10, 10 )
+var projectile = preload("res://Enemies/Projectiles/Rock.tscn")
+var projectile_port = Vector2( -10, -20 )
 
 const WEAPON_ANGLE_IDLE = PI
 
@@ -29,6 +31,11 @@ func aim( target_pos ):
 	var alpha = atan2( -delta_pos.y, delta_pos.x )
 	
 	backwards = !(alpha < -(PI/2) or alpha > (PI/2))
+	
+	if backwards:
+		alpha += delta_pos.length() * angle_per_dist
+	else:
+		alpha -= delta_pos.length() * angle_per_dist
 	
 	set_rot(alpha + WEAPON_ANGLE_IDLE)
 	
