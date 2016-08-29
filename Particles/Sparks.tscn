@@ -7,7 +7,7 @@
 transform/pos = Vector2( 100, -40 )
 z/z = -10
 config/amount = 16
-config/lifetime = 0.5
+config/lifetime = 0.6
 config/preprocess = 0.1
 config/explosiveness = 0.15
 params/direction = 270.0

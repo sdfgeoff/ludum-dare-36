@@ -21,6 +21,7 @@ var swing_angle = 0
 var swing_damaging = false
 
 onready var sprite = get_node("Sprite")
+var sparks = preload("res://Particles/Sparks.tscn")
 
 func _fixed_process(delta):
 	
@@ -38,6 +39,8 @@ func _fixed_process(delta):
 				var body = hit_ray.get_collider()
 				body.damage(DAMAGE)
 				swing_damaging = false
+				
+				hit_particles()
 		
 		if swing_angle < 0:
 			state = MELEE_IDLE
@@ -45,6 +48,12 @@ func _fixed_process(delta):
 		else:
 			swing_angle -= WEAPON_ANGLE_BACKSWING*(delta / SWING_DURATION)
 
+func hit_particles():
+	return
+	var new_sparks = sparks.instance()
+	get_tree().get_root().add_child(new_sparks)
+	var w_end = get_node("RangeRaycast").get_cast_to().rotate(get_rot())
+	new_sparks.set_pos( get_global_pos() + w_end )
 
 func set_angle( alpha ):
 	
