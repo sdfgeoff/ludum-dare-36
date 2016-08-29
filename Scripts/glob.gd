@@ -5,8 +5,11 @@ var projectile_layer = 16
 var enemy_layer = 8
 var player_layer = 4
 
-var pause_state = false
-var button_pause_state = false
+var toggle_state_pause = false
+var button_state_pause = false
+var toggle_state_fullscreen = false
+var button_state_fullscreen = false
+
 
 onready var pause_popup = get_node("/root/Game/HUD/Pause Popup")
 
@@ -58,17 +61,26 @@ func _process(delta):
 	if Input.is_action_pressed("quit"):
 		get_tree().quit()
 	
-	if Input.is_action_pressed("pause"):
-		if !button_pause_state:
-			button_pause_state = true
-			pause_state = not(pause_state)
-			get_tree().set_pause(pause_state)
-			if pause_state:
+	if Input.is_action_pressed("toggle_pause"):
+		if !button_state_pause:
+			button_state_pause = true
+			toggle_state_pause = not(toggle_state_pause)
+			get_tree().set_pause(toggle_state_pause)
+			if toggle_state_pause:
 				pause_popup.show()
 			else:
 				pause_popup.hide()
 	else:
-		button_pause_state = false
+		button_state_pause = false
+		
+	if Input.is_action_pressed("toggle_fullscreen"):
+		if !button_state_fullscreen:
+			button_state_fullscreen = true
+			toggle_state_fullscreen = not(toggle_state_fullscreen)
+			OS.set_window_fullscreen(toggle_state_fullscreen)
+		else:
+			button_state_fullscreen = false
+
 
 func add_score(score_):
 	score += score_
@@ -80,5 +92,5 @@ func add_score_multiplier(delta_multiplier):
 	
 func update_score():
 	score_total = score * score_multiplier
-	hud_score.set_text("%s CARNAGE" % score_total)
+	hud_score.set_text("%s00 CARNAGE" % score_total)
 	
