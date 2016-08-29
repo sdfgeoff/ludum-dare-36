@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://Map/Tiles/map_tiles.xml" type="TileSet" id=1]
 [ext_resource path="res://Map/terrain.gd" type="Script" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Map/Background/SpawnSign.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Map/Background/Elevator.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Map/Physics Objects/Medkit.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Map/Physics Objects/RocketPickup.tscn" type="PackedScene" id=24]
 
 [node name="FacilityNode" type="Node2D"]
 
@@ -508,5 +509,13 @@ transform/pos = Vector2( -840.507, -855.763 )
 [node name="Medkit2" parent="." instance=ExtResource( 23 )]
 
 transform/pos = Vector2( 5374.1, -241.871 )
+
+[node name="RocketPickup" parent="." instance=ExtResource( 24 )]
+
+transform/pos = Vector2( 3957.1, 594.873 )
+
+[node name="RocketPickup1" parent="." instance=ExtResource( 24 )]
+
+transform/pos = Vector2( -1647.82, 594.873 )
 
 

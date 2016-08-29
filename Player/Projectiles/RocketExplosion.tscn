@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://Player/Projectiles/RocketExplosion.gd" type="Script" id=1]
+[ext_resource path="res://Particles/explode.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shading_mode = 0
+
+[sub_resource type="ColorRamp" id=3]
+
+offsets = FloatArray( 0, 0.430155, 1 )
+colors = ColorArray( 1, 1, 1, 1, 0.855469, 0.481201, 0, 1, 0.765625, 0.316456, 0.119629, 1 )
+
+[node name="Node2D" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 26.6373, 0, 0, 26.2625, -4.16481, -3.68773 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 15
+collision/mask = 15
+script/script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+visibility/blend_mode = 1
+material/material = SubResource( 2 )
+transform/pos = Vector2( -8.08601, 0.735088 )
+transform/scale = Vector2( 6, 6 )
+config/amount = 32
+config/lifetime = 0.829105
+config/preprocess = 0.1
+config/explosiveness = 0.306667
+config/texture = ExtResource( 2 )
+config/h_frames = 8
+params/direction = 0.0
+params/spread = 180.0
+params/linear_velocity = 30.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = -13.6069
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 2.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.536228
+randomness/initial_size = 0.550776
+randomness/final_size = 0.600358
+color/color = Color( 0.613281, 0.38214, 0.158112, 1 )
+color/color_ramp = SubResource( 3 )
+
+[node name="Node2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -4.16481, -3.68773 )
+transform/scale = Vector2( 26.6373, 26.2625 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+

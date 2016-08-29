@@ -5,6 +5,7 @@ onready var hud = get_node("/root/Game/HUD")
 
 
 var damage_particles = preload("res://Particles/PlayerDamage.tscn")
+var rocket = preload("res://Player/Projectiles/Rocket.tscn")
 
 const HEALTH_MAXIMUM = 1000
 const WALK_SPEED = 300
@@ -35,8 +36,13 @@ var backwards = false
 var backwards_last = true # this causes it to flip first frame is mouse in wrong side.
 var anim_current = -100
 
+var STARTING_ROCKETS = 2
+var rockets = STARTING_ROCKETS
+
 
 var dead = false
+
+var last_rightclick = false
 
 func do_animation( ):
 	
@@ -61,6 +67,10 @@ func do_animation( ):
 			sprite.play("Back")
 			sprite.set_frame( (frame-1)%6 )
 		anim_current = direction
+
+func give_rockets(number):
+	rockets += number
+	hud.set_rockets(rockets)
 
 func _fixed_process(delta):
 	
@@ -120,6 +130,18 @@ func _fixed_process(delta):
 	aim_miniguns(target_angle)
 	fire_miniguns(Input.is_action_pressed("weapon_primary"))
 	
+	var rightclick = Input.is_action_pressed("weapon_secondary")
+	
+	
+	if (rockets > 0 and rightclick and ! last_rightclick):
+		give_rockets(-1)
+		var pewpew = rocket.instance()
+		pewpew.set_global_pos(get_global_pos())
+		pewpew.set_rot(target_angle)
+		get_tree().get_root().add_child(pewpew)
+		
+	
+	
 	# fixing the position of the minigun
 	if backwards != backwards_last:
 		if backwards:
@@ -133,6 +155,7 @@ func _fixed_process(delta):
 	
 	backwards_last = backwards
 	direction_last = direction
+	last_rightclick = rightclick
 
 
 
@@ -146,6 +169,7 @@ func _ready():
 	setup_ray("RightRaycast", glob.terrain_layer | glob.enemy_layer)
 	
 	hud.set_health_max(HEALTH_MAXIMUM)
+	hud.set_rockets(rockets)
 
 
 func setup_ray(name, mask):

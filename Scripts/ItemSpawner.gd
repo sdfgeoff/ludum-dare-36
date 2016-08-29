@@ -3,6 +3,7 @@ extends VisibilityNotifier2D
 
 
 var medkit = preload("res://Map/Physics Objects/Medkit.tscn")
+var rockets = preload("res://Map/Physics Objects/RocketPickup.tscn")
 
 
 const LIVE_ITEM_COUNT = 1
@@ -24,7 +25,9 @@ func notify():
 
 
 func spawn_item():
-	var item = medkit.instance()
+	var item
+	if (randf() > 0.5): item = medkit.instance()
+	else: item = rockets.instance()
 	get_tree().get_root().call_deferred("add_child",item)
 	item.set_global_transform(get_global_transform())
 

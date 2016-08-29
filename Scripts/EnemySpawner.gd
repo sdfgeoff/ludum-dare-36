@@ -1,8 +1,8 @@
 extends VisibilityNotifier2D
 
-const SPAWN_PROB_RAMP = 0.0005
+const SPAWN_PROB_RAMP = 0.0003
 
-const BOT_MAX = 10
+const BOT_MAX = 8
 
 const SPAWN_RAMP_PERIOD = 120
 
