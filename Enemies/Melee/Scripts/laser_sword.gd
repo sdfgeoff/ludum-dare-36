@@ -13,7 +13,7 @@ const WEAPON_ANGLE_BACKSWING = PI/2
 const BACKSWING_DURATION = 0.4
 const SWING_DURATION = 0.1
 
-const DAMAGE = 50
+const DAMAGE = 120
 const SCORE = 30
 
 

@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 const SPEED = 600.0
-const DAMAGE = 100
+const DAMAGE = 50
 
 
 func _ready():

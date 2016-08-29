@@ -121,6 +121,7 @@ z/z = -5
 
 [node name="Construction Site" type="TextureFrame" parent="World/Terrain"]
 
+visibility/visible = false
 visibility/behind_parent = true
 anchor/left = 3
 anchor/top = 3
@@ -136,7 +137,6 @@ margin/top = 199.059
 margin/right = -4696.59
 margin/bottom = -5.94098
 texture = ExtResource( 5 )
-modulate = Color( 1, 1, 1, 0.498039 )
 stretch_mode = 0
 
 [node name="PlayerNode" parent="World" instance=ExtResource( 6 )]

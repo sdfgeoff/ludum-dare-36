@@ -10,7 +10,7 @@ const COOLDOWN = 1
 
 var cooldown = 0
 
-var projectile = preload("res://Enemies/Projectiles/Plasma.tscn")
+var projectile = preload("res://Enemies/Projectiles/Bullet.tscn")
 var projectile_port = Vector2( -10, 20 )
 
 const WEAPON_ANGLE_IDLE = PI

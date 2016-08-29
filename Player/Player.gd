@@ -170,6 +170,11 @@ func damage(dmg, pos = null, angle = 0):
 			hp = 0
 			fire_miniguns(false)
 
+func heal(HEALING):
+	hp += HEALING
+	if hp > HEALTH_MAXIMUM:
+		hp = HEALTH_MAXIMUM
+	hud.set_health(hp)
 
 func aim_miniguns(target_angle):
 	minigun_right.set_angle( target_angle )

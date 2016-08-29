@@ -30,7 +30,12 @@ var anim_walk_last = true
 
 var weapon = null
 
-var ranged_preference = 1.0
+var ranged_preference = false
+
+var spawner = null
+
+func set_spawner(sp):
+	spawner = sp
 
 func _fixed_process(delta):
 	
@@ -86,8 +91,8 @@ func _fixed_process(delta):
 			sprite.play()
 		else: sprite.stop()
 	
-	if backwards != backwards_last:
-		sprite.set_flip_h( !backwards )
+	
+	sprite.set_flip_h( !backwards )
 		#get_node("Weapon").get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
 	
 	
@@ -108,6 +113,9 @@ func damage(dmg):
 		spawn_blood()
 		queue_free()
 		glob.add_score(weapon.SCORE)
+		
+		if spawner != null:
+			spawner.bot_count -= 1
 
 
 func spawn_blood():
@@ -121,7 +129,9 @@ func _ready():
 	
 	glob.setup_enemy(self)
 	
-	set_weapon(glob.chose_weapon())
+	ranged_preference = randf() > 0.5
+	
+	set_weapon(glob.chose_weapon(ranged_preference))
 	
 	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
 	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer | glob.player_layer)

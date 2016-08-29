@@ -46,6 +46,7 @@ var epoch = 0
 var active_weapons = [weapons_melee[epoch],weapons_ranged[epoch]]
 var weapons_set = false
 
+var item_spawns_live = 0
 
 func _ready():
 	set_pause_mode(2)
@@ -56,6 +57,7 @@ func _ready():
 	hud_white_border.show()
 	white_overlay.set_modulate(Color(1.0,1.0,1.0,0))
 	white_overlay.show()
+
 
 func setup_player_projectile(obj):
 	obj.set_collision_mask( terrain_layer | enemy_layer )
@@ -145,7 +147,7 @@ func rift_shift(time_rem):
 		
 		
 func set_enemy_weapons():
-	var epoch_ = randi() % EPOCH_COUNT
+	var epoch_ = int(floor(randf() * EPOCH_COUNT))
 	if epoch_ == epoch:
 		epoch = (epoch_+1) % EPOCH_COUNT
 	else:
@@ -154,7 +156,7 @@ func set_enemy_weapons():
 	active_weapons = [weapons_melee[epoch],weapons_ranged[epoch]]
 	var bots = get_tree().get_nodes_in_group("enemies")
 	for bot in bots:
-		bot.set_weapon(chose_weapon())
+		bot.set_weapon(chose_weapon(bot.ranged_preference))
 		
 func chose_weapon(is_ranged=null):
 	var i = 0
