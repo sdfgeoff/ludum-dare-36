@@ -169,6 +169,7 @@ func damage(dmg, pos = null, angle = 0):
 		hud.set_health(hp)
 		if (hp < 0):
 			dead = true
+			get_node("Sprite").stop()
 			hp = 0
 
 func add_score(score):

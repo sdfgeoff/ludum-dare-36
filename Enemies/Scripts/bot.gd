@@ -120,7 +120,7 @@ func _ready():
 	
 	glob.setup_enemy(self)
 	
-	set_weapon( glob.weapon_sword.instance() )
+	set_weapon( glob.weapon_flamer.instance() )
 	
 	setup_ray("FootRaycast1", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
 	setup_ray("FootRaycast2", glob.terrain_layer | glob.enemy_layer | glob.player_layer)
