@@ -123,28 +123,4 @@ z/z = -3
 texture = ExtResource( 5 )
 offset = Vector2( 0, 0 )
 
-[node name="Health Bar" type="ProgressBar" parent="Player"]
-
-anchor/left = 3
-anchor/top = 1
-anchor/right = 3
-anchor/bottom = 1
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 200.0
-margin/top = -205.0
-margin/right = 0.0
-margin/bottom = -215.0
-range/min = 0.0
-range/max = 100.0
-range/step = 1.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-percent/visible = true
-
 
