@@ -2,17 +2,17 @@ extends AnimatedSprite
 
 var sprite = SpriteFrames.new()
 
-var walk_forwards = [preload("res://Assets/Enemies/Character/enemy_char_0.png"),
-	preload("res://Assets/Enemies/Character/enemy_char_1.png"), 
-	preload("res://Assets/Enemies/Character/enemy_char_0.png"), 
-	preload("res://Assets/Enemies/Character/enemy_char_2.png")]
+var walk_forwards = [preload("res://Enemies/Character/enemy_char_0.png"),
+	preload("res://Enemies/Character/enemy_char_1.png"), 
+	preload("res://Enemies/Character/enemy_char_0.png"), 
+	preload("res://Enemies/Character/enemy_char_2.png")]
 
-var walk_backwards = [preload("res://Assets/Enemies/Character/enemy_char_0.png"),
-	preload("res://Assets/Enemies/Character/enemy_char_2.png"), 
-	preload("res://Assets/Enemies/Character/enemy_char_0.png"), 
-	preload("res://Assets/Enemies/Character/enemy_char_1.png")]
+var walk_backwards = [preload("res://Enemies/Character/enemy_char_0.png"),
+	preload("res://Enemies/Character/enemy_char_2.png"), 
+	preload("res://Enemies/Character/enemy_char_0.png"), 
+	preload("res://Enemies/Character/enemy_char_1.png")]
 
-var stand = preload("res://Assets/Enemies/Character/enemy_char_0.png")
+var stand = preload("res://Enemies/Character/enemy_char_0.png")
 
 func _ready():
 	sprite.add_animation("Walk Forwards")
