@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Map/Background/desk.png" type="Texture" id=1]
+
+[node name="Desk" type="Sprite"]
+
+transform/pos = Vector2( -0.715622, -65.3573 )
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+
+

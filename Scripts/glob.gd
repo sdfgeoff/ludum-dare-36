@@ -92,5 +92,5 @@ func add_score_multiplier(delta_multiplier):
 	
 func update_score():
 	score_total = score * score_multiplier
-	hud_score.set_text("%s00 CARNAGE" % score_total)
+	hud_score.set_text("%s CARNAGE" % (score_total*100))
 	
