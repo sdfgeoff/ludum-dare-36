@@ -20,6 +20,10 @@ var hp = 100;
 var blood = preload("res://Assets/BloodSplat.tscn")
 
 
+var backwards = false
+var backwards_last = true
+var anim_walk = false
+var anim_walk_last = true
 
 func _fixed_process(delta):
 	
@@ -38,26 +42,19 @@ func _fixed_process(delta):
 	if (targets.size() != 0):
 		var target = targets[0]
 		
-		
 		var delta_position = target.get_global_pos().x - get_global_pos().x
 		if delta_position > DIR_CHANGE_TOLERANCE:
+			backwards = false
 			direction = DIR_RIGHT
 			jumping = get_node("RightRaycast").is_colliding()
 		elif delta_position < -DIR_CHANGE_TOLERANCE:
+			backwards = true
 			direction = DIR_LEFT
 			jumping = get_node("LeftRaycast").is_colliding()
 		
 		if not jumping:
 			walk_speed = direction * WALK_SPEED
 			if feet_touching: set_rot(0.0)
-	
-	if direction: 
-		get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
-		get_node("Weapon").get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
-		
-	else:
-		walk_speed = 0
-	
 	
 	var velocity = get_linear_velocity()
 	var pos = get_pos()
@@ -66,11 +63,27 @@ func _fixed_process(delta):
 	if (velocity.x < WALK_SPEED and velocity.x > -WALK_SPEED):
 		apply_impulse(Vector2(0,0), Vector2(walk_delta,0))
 	
+	var sprite = get_node("Sprite")
+	anim_walk = (walk_speed != 0) and feet_touching
+	
+	if (anim_walk != anim_walk_last):
+		if (anim_walk):
+			sprite.play()
+		else: sprite.stop()
+	
+	if backwards != backwards_last:
+		sprite.set_flip_h( direction == DIR_RIGHT )
+		get_node("Weapon").get_node("Sprite").set_flip_h( direction == DIR_RIGHT )
+	
+	
 	if (jump_cooldown > 0.0): jump_cooldown -= delta
 	
 	if ( feet_touching and jumping):
 		apply_impulse(Vector2(0,0), Vector2(0,- (MASS * (JUMP_VERTICAL_IMPULSE + velocity.y)) ))
 		jump_cooldown = JUMP_COOLDOWN
+		
+	backwards_last = backwards
+	anim_walk_last = anim_walk
 
 func damage(dmg):
 	hp -= dmg
@@ -100,4 +113,5 @@ func setup_ray(name, mask):
 	var ray = get_node(name)
 	ray.set_layer_mask(mask)
 	ray.add_exception(self)
+	get_node("Sprite").play("Walk Forwards")
 
