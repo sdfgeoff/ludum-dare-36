@@ -39,9 +39,11 @@ var weapon_shuriken = preload( "res://Enemies/Ranged/ShurikenThrower.tscn" )
 var weapon_rifle = preload( "res://Enemies/Ranged/Rifle.tscn" )
 var weapon_plasma = preload( "res://Enemies/Ranged/PlasmaRifle.tscn" )
 
+var weapons_ranged = [weapon_rock,weapon_spear,weapon_crossbow,weapon_shuriken,weapon_rifle,weapon_plasma]
+
 const EPOCH_COUNT = 6
 var epoch = 0
-var active_weapons = [weapons_melee[epoch]]
+var active_weapons = [weapons_melee[epoch],weapons_ranged[epoch]]
 var weapons_set = false
 
 
@@ -149,7 +151,7 @@ func set_enemy_weapons():
 	else:
 		epoch = epoch_
 	
-	active_weapons = [weapons_melee[epoch]]
+	active_weapons = [weapons_melee[epoch],weapons_ranged[epoch]]
 	var bots = get_tree().get_nodes_in_group("enemies")
 	for bot in bots:
 		bot.set_weapon(chose_weapon())
@@ -157,7 +159,7 @@ func set_enemy_weapons():
 func chose_weapon(is_ranged=null):
 	var i = 0
 	if is_ranged == null:
-		i = randi() % 1
+		i = randi() % 2
 	elif is_ranged:
 		i = 1
 	return(active_weapons[i].instance())
